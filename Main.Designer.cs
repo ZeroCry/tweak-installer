@@ -153,6 +153,8 @@
             // auto
             // 
             this.auto.AutoSize = true;
+            this.auto.Checked = true;
+            this.auto.CheckState = System.Windows.Forms.CheckState.Checked;
             this.auto.Location = new System.Drawing.Point(4, 181);
             this.auto.Name = "auto";
             this.auto.Size = new System.Drawing.Size(176, 17);
