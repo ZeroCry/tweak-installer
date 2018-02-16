@@ -1,184 +1,59 @@
-﻿//Copyright 2018 josephwalden
-//Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-//The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-using jLib;
-using Microsoft.VisualBasic.FileIO;
-using SevenZipExtractor;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using jLib;
+using MetroFramework;
+using MetroFramework.Forms;
+using Microsoft.VisualBasic.FileIO;
+using SevenZipExtractor;
 using WinSCP;
+using SearchOption = System.IO.SearchOption;
 
 namespace Tweak_Installer
 {
-    public partial class Main : Form
+    public partial class Main : MetroForm
     {
-        static bool verbose = false, update = true;
-        bool enabled = false;
         public Main()
         {
             InitializeComponent();
         }
-        string join(List<string> s, string i)
-        {
-            string temp = "";
-            foreach (string j in s)
-            {
-                temp += '"' + j + '"' + i;
-            }
-            return temp;
-        }
-        private void select_Click(object sender, EventArgs e)
-        {
-            openFileDialog.Multiselect = true;
-            openFileDialog.Filter = "Tweaks|*.deb;*.zip;*.ipa";
-            tweaks.Clear();
-            var f = openFileDialog.ShowDialog();
-            switch (f)
-            {
-                case DialogResult.OK:
-                    {
-                        enabled = true;
-                        foreach (string i in openFileDialog.FileNames)
-                        {
-                            tweaks.Add(i);
-                        }
-                        break;
-                    }
-                default:
-                    enabled = false;
-                    break;
-            }
-        }
 
-        private void install_Click(object sender, EventArgs e)
-        {
-            emptyDir("files");
-            if (!enabled)
-            {
-                MessageBox.Show("Please select a deb, ipa or zip first");
-                return;
-            }
-            clean();
-            getOptions();
-            session = getSession(host.Text, "root", pass.Text, int.Parse(port.Text));
-            getJailbreakSpecificOptions(session);
-            foreach (string tweak in tweaks)
-            {
-                clean();
-                if (tweak.Contains(".deb"))
-                {
-                    extractDeb(tweak);
-                }
-                else if (tweak.Contains(".ipa"))
-                {
-                    extractIPA(tweak);
-                }
-                else
-                {
-                    extractZip(tweak);
-                }
-            }
-            if (convert) convertTweaks();
-            getFiles();
-            installFiles(session);
-            log("");
-        }
+        private const string version = "2.0.4";
+        public bool enabled;
+        static bool verbose;
+        public List<string> tweaks = new List<string>(), skip = new List<string>(), filenamesshort = new List<string>();
+        public Session session;
+        public Crawler crawler;
+        public bool uicache, jtool, convert, dont_sign;
+        public bool update;
 
-        private void Uninstall_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            emptyDir("files");
-            if (!enabled)
-            {
-                MessageBox.Show("Please select a deb, ipa or zip first");
-                return;
-            }
-            clean();
-            getOptions();
-            session = getSession(host.Text, "root", pass.Text, int.Parse(port.Text));
-            getJailbreakSpecificOptions(session);
-            foreach (string tweak in tweaks)
-            {
-                clean();
-                if (tweak.Contains(".deb"))
-                {
-                    extractDeb(tweak);
-                }
-                else if (tweak.Contains(".ipa"))
-                {
-                    extractIPA(tweak);
-                }
-                else
-                {
-                    extractZip(tweak);
-                }
-            }
-            if (convert) convertTweaks();
-            if (File.Exists("prerm"))
-            {
-                if (verbose) log("Running prerm script");
-                session.PutFiles("prerm", "script");
-                session.ExecuteCommand("./script && rm script");
-            }
-            getFiles();
-            uninstallFiles(session);
-            log("");
-        }
-
-        private void Main_Load(object sender, EventArgs e)
-        {
+            metroTabControl1.SelectedIndex = 0;
+            Text = $"Tweak Installer v{version}";
             if (Environment.GetCommandLineArgs().Contains("dont-update")) update = false;
 
-            select.MouseClick += Select_MouseClick;
             deleteIfExists("tic.exe");
 
             ContextMenu installmenu = new ContextMenu();
             installmenu.MenuItems.Add("Install Filza");
             installmenu.MenuItems[0].Click += InstallFilza;
 
-            installbtn.ContextMenu = installmenu;
+            Install.ContextMenu = installmenu;
 
             ContextMenu uninstallmenu = new ContextMenu();
             uninstallmenu.MenuItems.Add("Uninstall Filza");
             uninstallmenu.MenuItems[0].Click += RemoveFilza;
 
-            uninstallbtn.ContextMenu = uninstallmenu;
-            //check for updates
-            if (update)
-            {
-                try
-                {
-                    using (WebClient client = new WebClient())
-                    {
-                        string current = File.ReadAllText("version.txt");
-                        string version = client.DownloadString("https://raw.githubusercontent.com/josephwalden13/tweak-installer/master/bin/Debug/version.txt");
-                        if (current != version)
-                        {
-                            var f = MessageBox.Show(caption: "Update Available!", text: ($"Version {version.Replace("\n", "")} released. Please download it from https://github.com/josephwalden13/tweak-installer/releases\nWould you like to update?"), buttons: MessageBoxButtons.YesNo);
-                            if (f == DialogResult.Yes)
-                            {
-                                Process.Start("https://github.com/josephwalden13/tweak-installer/releases");
-                            }
-                        }
-                    }
-                }
-                catch { }
-            }
+            Uninstall.ContextMenu = uninstallmenu;
             if (!File.Exists("settings"))
             {
-                string[] def = new string[] { "192.168.1.1", "22", "" };
+                string[] def = { "192.168.1.1", "22", "" };
                 File.WriteAllLines("settings", def);
             }
             string[] data = File.ReadAllLines("settings"); //get ssh settings
@@ -186,43 +61,28 @@ namespace Tweak_Installer
             {
                 data[i] = data[i].Split('#')[0];
             }
-            host.Text = data[0];
-            port.Text = data[1];
-            pass.Text = data[2];
-            if (port.Text == "" || port.Text == "root")
+            IP.Text = data[0];
+            Port.Text = data[1];
+            Password.Text = data[2];
+            if (Port.Text == "" || Port.Text == "root")
             {
-                port.Text = "22";
+                Port.Text = "22";
             }
         }
 
-        private void Select_MouseClick(object sender, MouseEventArgs e)
-        {
-            //switch (e.Button)
-            //{
-            //    case MouseButtons.Right:
-            //        ContextMenu selectMenu = new ContextMenu();
-            //        foreach (string i in tweaks)
-            //        {
-            //            selectMenu.MenuItems.Add(new FileInfo(i).Name);
-            //        }
-            //        select.ContextMenu = selectMenu;
-            //        break;
-            //}
-        }
-
+        #region Funcs
         private void RemoveFilza(object sender, EventArgs e)
         {
             MessageBox.Show("This could take up to a minute");
-            Session s = getSession(host.Text, "root", pass.Text, int.Parse(port.Text));
+            Session s = getSession(IP.Text, "root", Password.Text, int.Parse(Port.Text));
             s.ExecuteCommand("rm -r /Applications/Filza.app");
             s.ExecuteCommand("uicache");
             s.Close();
         }
-
         private void InstallFilza(object sender, EventArgs e)
         {
             MessageBox.Show("This could take up to a minute");
-            Session s = getSession(host.Text, "root", pass.Text, int.Parse(port.Text));
+            Session s = getSession(IP.Text, "root", Password.Text, int.Parse(Port.Text));
             s.ExecuteCommand("rm Filza.tar");
             s.ExecuteCommand("wget dl.sparko.me/Filza.tar");
             s.ExecuteCommand("tar -xf Filza.tar");
@@ -232,165 +92,6 @@ namespace Tweak_Installer
             s.Close();
         }
 
-        private void host_TextChanged(object sender, EventArgs e)
-        {
-            string[] data = { host.Text, port.Text, pass.Text };
-            File.WriteAllLines("settings", data);
-        }
-
-        private void pass_TextChanged(object sender, EventArgs e)
-        {
-            string[] data = { host.Text, port.Text, pass.Text };
-            File.WriteAllLines("settings", data);
-        }
-
-        void respring_Click(object sender, EventArgs e)
-        {
-            session = getSession(host.Text, "root", pass.Text, int.Parse(port.Text));
-            log("Respringing");
-            session.ExecuteCommand("killall -9 SpringBoard");
-            log("Done");
-            log("");
-        }
-
-        private void uicache_Click(object sender, EventArgs e)
-        {
-            session = getSession(host.Text, "root", pass.Text, int.Parse(port.Text));
-            log("Running uicache");
-            session.ExecuteCommand("uicache");
-            session.ExecuteCommand("Done");
-            log("");
-            session.Close();
-        }
-
-        private void error_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("https://github.com/josephwalden13/tweak-installer/issues");
-        }
-
-        private void debslnk_Click(object sender, EventArgs e)
-        {
-            Process.Start("http://s0n1c.org/cydia/");
-        }
-
-        private void reddit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("https://www.reddit.com/user/josephwalden/");
-        }
-
-        private void creator_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("https://www.reddit.com/user/josephwalden/");
-        }
-
-        private void ui_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("https://www.reddit.com/user/brnnkr/");
-        }
-
-        private void twitter_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("https://twitter.com/jmw_2468");
-        }
-
-        private void github_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("https://github.com/josephwalden13/");
-        }
-
-        private void paypal_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("http://paypal.me/JosephWalden");
-        }
-
-        private void autolabel_Click(object sender, EventArgs e)
-        {
-            auto.Checked = !auto.Checked;
-        }
-
-        private void port_TextChanged(object sender, EventArgs e)
-        {
-            string[] data = { host.Text, port.Text, pass.Text };
-            File.WriteAllLines("settings", data);
-        }
-
-        private void version_Click(object sender, EventArgs e)
-        {
-            verbose = true;
-        }
-
-        private void terminal_Click(object sender, EventArgs e)
-        {
-            Process.Start("putty.exe", host.Text + ":" + port.Text + " -l root -pw " + pass.Text);
-        }
-
-        //tweak installer library
-
-        public List<string> tweaks = new List<string>(), skip = new List<string>();
-        public string[] data;
-        public bool uicache = false, jtool = false, convert = false, dont_sign = false;
-        public Crawler crawler;
-        public string user;
-        public Session session;
-
-        public string convert_path(string i, bool unix = false)
-        {
-            if (!unix)
-            {
-                return i.Replace("\\", "/");//.Replace(" ", "\\ ").Replace("(", "\\(").Replace(")", "\\)").Replace("'", "\\'").Replace("@", "\\@");
-            }
-            else
-            {
-                return i.Replace("\\", "/").Replace(" ", "\\ ").Replace("(", "\\(").Replace(")", "\\)").Replace("'", "\\'").Replace("@", "\\@");
-            }
-        }
-        public void createDirIfDoesntExist(string path, bool verbose = false)
-        {
-            if (!Directory.Exists(path))
-            {
-                if (verbose) log("Creating directory " + path);
-                Directory.CreateDirectory(path);
-                if (verbose) log("Created directory " + path);
-            }
-            else
-            {
-                if (verbose) log("No need to create " + path + " as it already exists");
-            }
-        }
-        public void deleteIfExists(string path, bool verbose = false)
-        {
-            if (verbose) log("Searching for " + path);
-            if (File.Exists(path))
-            {
-                if (verbose) log("Deleting " + path);
-                File.Delete(path);
-                if (verbose) log("Deleted " + path);
-            }
-        }
-        public void emptyDir(string path, bool verbose = false)
-        {
-            if (Directory.Exists(path))
-            {
-                Directory.Delete(path, true);
-                if (verbose) log("Deleted " + path);
-            }
-            Directory.CreateDirectory(path);
-            if (verbose) log("Created directory " + path);
-        }
-        public void moveDirIfPresent(string source, string dest, string parent = null, bool verbose = false)
-        {
-            if (Directory.Exists(source))
-            {
-                if (verbose) log("Found " + source);
-                if (parent != null)
-                {
-                    createDirIfDoesntExist(parent);
-                    if (verbose) log("Created " + parent);
-                }
-                FileSystem.MoveDirectory(source, dest, true);
-                if (verbose) log("Moved " + source + " to " + dest);
-            }
-        }
         public void log(string s)
         {
             if (!File.Exists("log.txt")) File.Create("log.txt").Close();
@@ -400,7 +101,6 @@ namespace Tweak_Installer
                 Console.WriteLine(s);
                 output.Text += s + Environment.NewLine;
                 output.SelectionStart = output.Text.Length;
-                output.ScrollToCaret();
             }
             catch
             {
@@ -408,132 +108,44 @@ namespace Tweak_Installer
                 log(s);
             }
         }
+        
+        public void EmptyDir(string path, bool verbose1 = false)
+        {
+            if (Directory.Exists(path))
+            {
+                Directory.Delete(path, true);
+                if (verbose1) log("Deleted " + path);
+            }
+            Directory.CreateDirectory(path);
+            if (verbose1) log("Created directory " + path);
+        }
+
+        public void deleteIfExists(string path, bool verbose1 = false)
+        {
+            if (verbose1) log("Searching for " + path);
+            if (File.Exists(path))
+            {
+                if (verbose1) log("Deleting " + path);
+                File.Delete(path);
+                if (verbose1) log("Deleted " + path);
+            }
+        }
+        public void clean()
+        {
+            deleteIfExists("JMWCrypto.dll");
+            EmptyDir("temp");
+            deleteIfExists("data.tar");
+            deleteIfExists("control.tar");
+            deleteIfExists("control");
+            deleteIfExists("postinst");
+            deleteIfExists("prerm");
+            deleteIfExists("postrm");
+        }
 
         public void getOptions()
         {
             skip = File.Exists("skip.list") ? File.ReadAllLines("skip.list").ToList() : new List<string>();
         }
-
-        public void extractZip(string path)
-        {
-            log("Extracting Zip " + path);
-            try
-            {
-                using (ArchiveFile archiveFile = new ArchiveFile(path))
-                {
-                    if (verbose) log("Extracting zip");
-                    archiveFile.Extract("temp");
-                    if (verbose) log("Extracted zip");
-                }
-            }
-            catch (Exception e)
-            {
-                log("Not a valid ZIP archive / Access Denied");
-                throw e;
-            }
-            if (Directory.Exists("temp\\bootstrap\\"))
-            {
-                log("Found bootstrap");
-                if (Directory.Exists("temp\\bootstrap\\Library\\SBInject\\"))
-                {
-                    createDirIfDoesntExist("files\\usr\\lib\\SBInject");
-                    foreach (string file in Directory.GetFiles("temp\\bootstrap\\Library\\SBInject\\"))
-                    {
-                        File.Move(file, "files\\usr\\lib\\SBInject\\" + new FileInfo(file).Name);
-                    }
-                    foreach (string file in Directory.GetDirectories("temp\\bootstrap\\Library\\SBInject\\"))
-                    {
-                        Directory.Move(file, "files\\usr\\lib\\SBInject\\" + new DirectoryInfo(file).Name);
-                    }
-                    Directory.Delete("temp\\bootstrap\\Library\\SBInject", true);
-                }
-                moveDirIfPresent("temp\\bootstrap\\Library\\Themes\\", "files\\bootstrap\\Library\\Themes\\");
-                foreach (string dir in Directory.GetDirectories("temp"))
-                {
-                    FileSystem.MoveDirectory(dir, "files\\" + new DirectoryInfo(dir).Name, true);
-                }
-                foreach (string file in Directory.GetFiles("temp"))
-                {
-                    File.Copy(file, "files\\" + new FileInfo(file).Name, true);
-                }
-            }
-            else
-            {
-                log("Unrecognised format. Determining ability to install");
-                List<string> exts = new List<string>();
-                List<string> directories = new List<string>();
-                foreach (string dir in Directory.GetDirectories("temp", "*", System.IO.SearchOption.AllDirectories))
-                {
-                    directories.Add(new DirectoryInfo(dir).Name);
-                }
-                if (directories.Contains("bootstrap"))
-                {
-                    log("Found bootstrap");
-                    foreach (string dir in Directory.GetDirectories("temp", "*", System.IO.SearchOption.AllDirectories))
-                    {
-                        if (new DirectoryInfo(dir).Name == "bootstrap")
-                        {
-                            createDirIfDoesntExist("files\\bootstrap\\");
-                            FileSystem.CopyDirectory(dir, "files\\bootstrap");
-                            moveDirIfPresent("files\\bootstrap\\SBInject", "files\\bootstrap\\Library\\SBInject", "files\\bootstrap\\Library\\SBInject");
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    foreach (string i in Directory.GetFiles("temp"))
-                    {
-                        string ext = new FileInfo(i).Extension;
-                        if (!exts.Contains(ext)) exts.Add(ext);
-                    }
-                    if (exts.Count == 2 && exts.Contains(".dylib") && exts.Contains(".plist"))
-                    {
-                        log("Substrate Addon. Installing");
-                        createDirIfDoesntExist("files\\usr\\lib\\SBInject");
-                        foreach (string i in Directory.GetFiles("temp"))
-                        {
-                            File.Copy(i, "files\\usr\\lib\\SBInject\\" + new FileInfo(i).Name, true);
-                        }
-                        moveDirIfPresent("files\\Library\\PreferenceBundles\\", "files\\bootstrap\\Library\\PreferenceBundles\\");
-                        moveDirIfPresent("files\\Library\\PreferenceLoader\\", "files\\bootstrap\\Library\\PreferenceLoader\\");
-                        moveDirIfPresent("files\\Library\\LaunchDaemons\\", "files\\bootstrap\\Library\\LaunchDaemons\\");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Unsafe to install. To install this tweak you must do so manually. Press enter to continue...");
-                        Environment.Exit(0);
-                    }
-                }
-            }
-        }
-
-        public void extractIPA(string path)
-        {
-            clean();
-            log("Extracting IPA " + path);
-            try
-            {
-                using (ArchiveFile archiveFile = new ArchiveFile(path))
-                {
-                    if (verbose) log("Extracting payload");
-                    archiveFile.Extract("temp");
-                }
-                createDirIfDoesntExist("files\\Applications");
-                foreach (string app in Directory.GetDirectories("temp\\Payload\\"))
-                {
-                    if (verbose) log("Moving payload");
-                    Directory.Move(app, "files\\Applications\\" + new DirectoryInfo(app).Name);
-                    if (verbose) log("Moved payload");
-                }
-            }
-            catch (Exception e)
-            {
-                log("Not a valid IPA / Access Denied");
-                throw e;
-            }
-        }
-
         public void extractDeb(string path)
         {
             clean();
@@ -588,42 +200,8 @@ namespace Tweak_Installer
             {
                 log("Not a valid deb file / Access Denied");
                 throw e;
-            };
-        }
-
-        public void clean()
-        {
-            deleteIfExists("JMWCrypto.dll");
-            emptyDir("temp");
-            deleteIfExists("data.tar");
-            deleteIfExists("control.tar");
-            deleteIfExists("control");
-            deleteIfExists("postinst");
-            deleteIfExists("prerm");
-            deleteIfExists("postrm");
-        }
-
-        public void getJailbreakSpecificOptions(Session session)
-        {
-            if (session.FileExists("/usr/lib/SBInject"))
-            {
-                if (verbose) log("You're running Electa. I'll convert tweaks to that format & add entitlements to applications");
-                convert = true;
-                if (!session.FileExists("/bootstrap/Library/Themes"))
-                {
-                    session.CreateDirectory("/bootstrap/Library/Themes");
-                    session.ExecuteCommand("touch /bootstrap/Library/Themes/dont-delete");
-                    log("Themes folder missing. Touching /bootstrap/Library/Themes/dont-delete to prevent this in future");
-                }
-                jtool = true;
-            }
-            if (session.FileExists("/jb/"))
-            {
-                if (verbose) log("You're running LibreiOS. I'll add entitlements to applications");
-                jtool = true;
             }
         }
-
         public Session getSession(string ip, string user, string password, int port)
         {
             log("Connecting");
@@ -636,10 +214,10 @@ namespace Tweak_Installer
                 PortNumber = port,
                 GiveUpSecurityAndAcceptAnySshHostKey = true
             };
-            Session session = new Session();
+            Session session1 = new Session();
             try
             {
-                session.Open(sessionOptions);
+                session1.Open(sessionOptions);
             }
             catch (SessionRemoteException e)
             {
@@ -655,114 +233,182 @@ namespace Tweak_Installer
                 Environment.Exit(0);
             }
             log("Connected to SSH");
-            return session;
+            return session1;
         }
-
-        public void finish(Session session)
+        public void getJailbreakSpecificOptions(Session session1)
         {
-            if (uicache && auto.Checked)
+            if (session1.FileExists("/usr/lib/SBInject"))
             {
-                log("Running uicache (may take up to 30 seconds)");
-                session.ExecuteCommand("uicache"); //respring
+                if (verbose) log("You're running Electa. I'll convert tweaks to that format & add entitlements to applications");
+                convert = true;
+                if (!session1.FileExists("/bootstrap/Library/Themes"))
+                {
+                    session1.CreateDirectory("/bootstrap/Library/Themes");
+                    session1.ExecuteCommand("touch /bootstrap/Library/Themes/dont-delete");
+                    log("Themes folder missing. Touching /bootstrap/Library/Themes/dont-delete to prevent this in future");
+                }
+                jtool = true;
             }
-            if (auto.Checked)
+            if (session1.FileExists("/jb/"))
             {
-                log("Respringing...");
-                session.ExecuteCommand("killall -9 SpringBoard"); //respring
-            }
-            session.Close();
-        }
-
-        private void selectDebsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            tweaks.Clear();
-            var f = openFileDialog.ShowDialog();
-            switch (f)
-            {
-                case DialogResult.OK:
-                    {
-                        enabled = true;
-                        foreach (string i in openFileDialog.FileNames)
-                        {
-                            tweaks.Add(i);
-                        }
-                        break;
-                    }
-                default:
-                    enabled = false;
-                    break;
+                if (verbose) log("You're running LibreiOS. I'll add entitlements to applications");
+                jtool = true;
             }
         }
-
-        private void extractEntitlementsFromLocalFileToolStripMenuItem_Click(object sender, EventArgs e)
+        public void extractIPA(string path)
         {
-            openFileDialog.Multiselect = false;
-            openFileDialog.Filter = "";
-            var i = openFileDialog.ShowDialog();
-            switch (i)
+            clean();
+            log("Extracting IPA " + path);
+            try
             {
-                case DialogResult.OK:
-                    session = getSession(host.Text, "root", pass.Text, int.Parse(port.Text));
-                    session.PutFiles(openFileDialog.FileName, "file");
-                    session.ExecuteCommand("jtool -e arch -arch arm64 file && mv file.arch_arm64 file && jtool --ent file >> new.ent");
-                    session.GetFiles("new.ent", new FileInfo(openFileDialog.FileName).Name + ".ent");
-                    session.ExecuteCommand("rm new.ent file");
-                    session.Close();
-                    output.Text += "Extracted entitlements to Tweak Installer directory" + Environment.NewLine;
-                    break;
+                using (ArchiveFile archiveFile = new ArchiveFile(path))
+                {
+                    if (verbose) log("Extracting payload");
+                    archiveFile.Extract("temp");
+                }
+                createDirIfDoesntExist("files\\Applications");
+                foreach (string app in Directory.GetDirectories("temp\\Payload\\"))
+                {
+                    if (verbose) log("Moving payload");
+                    Directory.Move(app, "files\\Applications\\" + new DirectoryInfo(app).Name);
+                    if (verbose) log("Moved payload");
+                }
+            }
+            catch (Exception e)
+            {
+                log("Not a valid IPA / Access Denied");
+                throw e;
             }
         }
-
-        private void dontSignApplicationsToolStripMenuItem_Click(object sender, EventArgs e)
+        public void createDirIfDoesntExist(string path, bool verbose1 = false)
         {
-            dont_sign = true;
-            output.Text += "Won't sign applications" + Environment.NewLine;
-        }
-
-        private void useCustomEntitlementsFileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            openFileDialog.Multiselect = false;
-            openFileDialog.Filter = "Entitlements|*.ent|All Files|*.*";
-            var i = openFileDialog.ShowDialog();
-            switch (i)
+            if (!Directory.Exists(path))
             {
-                case DialogResult.OK:
-                    if (File.Exists(openFileDialog.FileName))
-                    {
-                        deleteIfExists("entitlements.ent");
-                        File.Copy(openFileDialog.FileName, "entitlements.ent");
-                        output.Text += "Using custom entitlements" + Environment.NewLine;
-                    }
-                    break;
-            }
-        }
-
-        private void useDefaultEntitlementsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (File.Exists("platform-binary.ent"))
-            {
-                deleteIfExists("entitlements.ent");
-                File.Copy("platform-binary.ent", "entitlements.ent");
-                output.Text += "Using default entitlements" + Environment.NewLine;
+                if (verbose1) log("Creating directory " + path);
+                Directory.CreateDirectory(path);
+                if (verbose1) log("Created directory " + path);
             }
             else
             {
-                using (WebClient c = new WebClient())
+                if (verbose1) log("No need to create " + path + " as it already exists");
+            }
+        }
+        public void moveDirIfPresent(string source, string dest, string parent = null, bool verbose1 = false)
+        {
+            if (Directory.Exists(source))
+            {
+                if (verbose1) log("Found " + source);
+                if (parent != null)
                 {
-                    c.DownloadFile("https://raw.githubusercontent.com/josephwalden13/tweak-installer/master/bin/Debug/platform-binary.ent", "platform-binary.ent");
-                    deleteIfExists("entitlements.ent");
-                    File.Copy("platform-binary.ent", "entitlements.ent");
-                    output.Text += "Using default entitlements" + Environment.NewLine;
+                    createDirIfDoesntExist(parent);
+                    if (verbose1) log("Created " + parent);
+                }
+                FileSystem.MoveDirectory(source, dest, true);
+                if (verbose1) log("Moved " + source + " to " + dest);
+            }
+        }
+        public void extractZip(string path)
+        {
+            log("Extracting Zip " + path);
+            try
+            {
+                using (ArchiveFile archiveFile = new ArchiveFile(path))
+                {
+                    if (verbose) log("Extracting zip");
+                    archiveFile.Extract("temp");
+                    if (verbose) log("Extracted zip");
+                }
+            }
+            catch (Exception e)
+            {
+                log("Not a valid ZIP archive / Access Denied");
+                throw e;
+            }
+            if (Directory.Exists("temp\\bootstrap\\"))
+            {
+                log("Found bootstrap");
+                if (Directory.Exists("temp\\bootstrap\\Library\\SBInject\\"))
+                {
+                    createDirIfDoesntExist("files\\usr\\lib\\SBInject");
+                    foreach (string file in Directory.GetFiles("temp\\bootstrap\\Library\\SBInject\\"))
+                    {
+                        File.Move(file, "files\\usr\\lib\\SBInject\\" + new FileInfo(file).Name);
+                    }
+                    foreach (string file in Directory.GetDirectories("temp\\bootstrap\\Library\\SBInject\\"))
+                    {
+                        Directory.Move(file, "files\\usr\\lib\\SBInject\\" + new DirectoryInfo(file).Name);
+                    }
+                    Directory.Delete("temp\\bootstrap\\Library\\SBInject", true);
+                }
+                moveDirIfPresent("temp\\bootstrap\\Library\\Themes\\", "files\\bootstrap\\Library\\Themes\\");
+                foreach (string dir in Directory.GetDirectories("temp"))
+                {
+                    FileSystem.MoveDirectory(dir, "files\\" + new DirectoryInfo(dir).Name, true);
+                }
+                foreach (string file in Directory.GetFiles("temp"))
+                {
+                    File.Copy(file, "files\\" + new FileInfo(file).Name, true);
+                }
+            }
+            else
+            {
+                log("Unrecognised format. Determining ability to install");
+                List<string> exts = new List<string>();
+                List<string> directories = new List<string>();
+                foreach (string dir in Directory.GetDirectories("temp", "*", SearchOption.AllDirectories))
+                {
+                    directories.Add(new DirectoryInfo(dir).Name);
+                }
+                if (directories.Contains("bootstrap"))
+                {
+                    log("Found bootstrap");
+                    foreach (string dir in Directory.GetDirectories("temp", "*", SearchOption.AllDirectories))
+                    {
+                        if (new DirectoryInfo(dir).Name == "bootstrap")
+                        {
+                            createDirIfDoesntExist("files\\bootstrap\\");
+                            FileSystem.CopyDirectory(dir, "files\\bootstrap");
+                            moveDirIfPresent("files\\bootstrap\\SBInject", "files\\bootstrap\\Library\\SBInject", "files\\bootstrap\\Library\\SBInject");
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (string i in Directory.GetFiles("temp"))
+                    {
+                        string ext = new FileInfo(i).Extension;
+                        if (!exts.Contains(ext)) exts.Add(ext);
+                    }
+                    if (exts.Count == 2 && exts.Contains(".dylib") && exts.Contains(".plist"))
+                    {
+                        log("Substrate Addon. Installing");
+                        createDirIfDoesntExist("files\\usr\\lib\\SBInject");
+                        foreach (string i in Directory.GetFiles("temp"))
+                        {
+                            File.Copy(i, "files\\usr\\lib\\SBInject\\" + new FileInfo(i).Name, true);
+                        }
+                        moveDirIfPresent("files\\Library\\PreferenceBundles\\", "files\\bootstrap\\Library\\PreferenceBundles\\");
+                        moveDirIfPresent("files\\Library\\PreferenceLoader\\", "files\\bootstrap\\Library\\PreferenceLoader\\");
+                        moveDirIfPresent("files\\Library\\LaunchDaemons\\", "files\\bootstrap\\Library\\LaunchDaemons\\");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Unsafe to install. To install this tweak you must do so manually. Press enter to continue...");
+                        Environment.Exit(0);
+                    }
                 }
             }
         }
-
-        private void verboseModeToolStripMenuItem_Click(object sender, EventArgs e)
+        public string convert_path(string i, bool unix = false)
         {
-            verbose = true;
-            output.Text += "Verbose mode" + Environment.NewLine;
-        }
+            if (!unix)
+            {
+                return i.Replace("\\", "/");//.Replace(" ", "\\ ").Replace("(", "\\(").Replace(")", "\\)").Replace("'", "\\'").Replace("@", "\\@");
+            }
 
+            return i.Replace("\\", "/").Replace(" ", "\\ ").Replace("(", "\\(").Replace(")", "\\)").Replace("'", "\\'").Replace("@", "\\@");
+        }
         public void convertTweaks()
         {
             log("Converting to electra tweak format");
@@ -791,18 +437,19 @@ namespace Tweak_Installer
             moveDirIfPresent("files\\Library\\PreferenceLoader\\", "files\\bootstrap\\Library\\PreferenceLoader\\");
         }
 
+        
+
         public void getFiles()
         {
             if (verbose) log("Getting all files");
-            crawler = new Crawler(Environment.CurrentDirectory + "\\files", true); //gets all files in the tweak
+            crawler = new Crawler(Environment.CurrentDirectory + "\\files"); //gets all files in the tweak
             crawler.Remove("DS_STORE");
         }
-
-        public void installFiles(Session session)
+        public void installFiles(Session session1)
         {
-            if (session.FileExists("/entitlements.ent"))
+            if (session1.FileExists("/entitlements.ent"))
             {
-                session.RemoveFiles("/entitlements.ent");
+                session1.RemoveFiles("/entitlements.ent");
                 if (verbose) log("Removed old entitlements file from the device");
             }
             createDirIfDoesntExist("backup");
@@ -814,11 +461,11 @@ namespace Tweak_Installer
             if (Directory.Exists("files\\Applications\\electra.app"))
             {
                 if (verbose) log("please no");
-                var f = MessageBox.Show("Please do not try this");
+                MetroMessageBox.Show(this, "Please do not try this");
                 Environment.Exit(0);
             }
             if (verbose) log("Creating directory list");
-            string[] directories = Directory.GetDirectories("files", "*", searchOption: System.IO.SearchOption.AllDirectories);
+            string[] directories = Directory.GetDirectories("files", "*", searchOption: SearchOption.AllDirectories);
             if (verbose) log("Got list. Creating backup folders");
             foreach (string dir in directories)
             {
@@ -842,8 +489,8 @@ namespace Tweak_Installer
                 {
                     log("This tweak may take longer than usual to process (45 second max)");
                 }
-                session.ExecuteCommand("find /" + dir + " > ~/files.list");
-                session.GetFiles("/var/root/files.list", "files.list");
+                session1.ExecuteCommand("find /" + dir + " > ~/files.list");
+                session1.GetFiles("/var/root/files.list", "files.list");
                 foreach (string file in File.ReadAllLines("files.list"))
                 {
                     remote.Add(file);
@@ -882,7 +529,6 @@ namespace Tweak_Installer
                                 overwrite = true;
                                 break;
                             case 2:
-                                action = false;
                                 go = true;
                                 break;
                         }
@@ -903,35 +549,34 @@ namespace Tweak_Installer
                         skip.Add(i);
                     }
                 }
-                session.GetFiles(convert_path(i), @"backup\" + i.Replace("/", "\\"));
+                session1.GetFiles(convert_path(i), @"backup\" + i.Replace("/", "\\"));
             }
             log("Installing");
             foreach (string dir in Directory.GetDirectories("files"))
             {
                 if (verbose) log("Installing directory " + dir);
-                session.PutFiles(dir, "/"); //put directories
+                session1.PutFiles(dir, "/"); //put directories
             }
             foreach (string file in Directory.GetFiles("files"))
             {
                 if (verbose) log("Installing file " + file);
-                session.PutFiles(file, "/"); //put files
+                session1.PutFiles(file, "/"); //put files
             }
             File.WriteAllLines("skip.list", skip);
             if (Directory.Exists("files\\Applications") && jtool)
             {
                 if (verbose) log("Entitlements needed");
-                session.PutFiles("entitlements.ent", "/");
+                session1.PutFiles("entitlements.ent", "/");
                 if (verbose) log("Sending entitlements");
                 log("Signing applications");
                 foreach (var app in Directory.GetDirectories("files\\Applications\\"))
                 {
                     uicache = true;
                     if (verbose) log("Signing " + convert_path(app.Replace("files\\", "\\")));
-                    crawler = new Crawler(app, true);
+                    crawler = new Crawler(app);
                     crawler.Files.ForEach(i =>
                     {
-                        bool sign = false;
-                        if (new FileInfo(i).Name.Split('.').Length < 2) sign = true;
+                        bool sign = new FileInfo(i).Name.Split('.').Length < 2;
                         if (!sign)
                         {
                             if (i.Split('.').Last() == "dylib") sign = true;
@@ -944,31 +589,212 @@ namespace Tweak_Installer
                         }
                         if (sign && !dont_sign)
                         {
-                            session.ExecuteCommand("jtool -e arch -arch arm64 " + convert_path(app.Replace("files\\", "\\")) + i);
-                            session.ExecuteCommand("mv " + convert_path(app.Replace("files\\", "\\")) + i + ".arch_arm64 " + convert_path(app.Replace("files\\", "\\")) + i);
-                            session.ExecuteCommand("jtool --sign --ent /entitlements.ent --inplace " + convert_path(app.Replace("files\\", "\\")) + i);
+                            session1.ExecuteCommand("jtool -e arch -arch arm64 " + convert_path(app.Replace("files\\", "\\")) + i);
+                            session1.ExecuteCommand("mv " + convert_path(app.Replace("files\\", "\\")) + i + ".arch_arm64 " + convert_path(app.Replace("files\\", "\\")) + i);
+                            session1.ExecuteCommand("jtool --sign --ent /entitlements.ent --inplace " + convert_path(app.Replace("files\\", "\\")) + i);
                             if (verbose) log("Signed " + convert_path(app.Replace("files\\", "\\")) + i);
                         }
                     });
                     crawler = new Crawler("files");
                     crawler.Files.ForEach(i =>
                     {
-                        session.ExecuteCommand("chmod 777 " + convert_path(i.Replace("\\files", "")));
+                        session1.ExecuteCommand("chmod 777 " + convert_path(i.Replace("\\files", "")));
                     });
                 }
             }
             if (File.Exists("postinst"))
             {
                 if (verbose) log("Running postinst script");
-                session.PutFiles("postinst", "script");
-                session.ExecuteCommand("./script && rm script");
+                session1.PutFiles("postinst", "script");
+                session1.ExecuteCommand("./script && rm script");
             }
             clean();
-            finish(session);
+            Finish(session1);
             log("Done");
         }
+        public void Finish(Session session1)
+        {
+            if (uicache && auto.Checked)
+            {
+                log("Running uicache (may take up to 30 seconds)");
+                session1.ExecuteCommand("uicache"); //respring
+            }
+            if (auto.Checked)
+            {
+                log("Respringing...");
+                session1.ExecuteCommand("killall -9 SpringBoard"); //respring
+            }
+            session1.Close();
+        }
 
-        public void uninstallFiles(Session session)
+        private void Respring_Click(object sender, EventArgs e)
+        {
+            session = getSession(IP.Text, "root", Password.Text, int.Parse(Port.Text));
+            log("Respringing");
+            session.ExecuteCommand("killall -9 SpringBoard");
+            log("Done");
+            log("");
+        }
+
+        private void UiCache_Click(object sender, EventArgs e)
+        {
+            session = getSession(IP.Text, "root", Password.Text, int.Parse(Port.Text));
+            log("Running uicache");
+            session.ExecuteCommand("uicache");
+            session.ExecuteCommand("Done");
+            log("");
+            session.Close();
+        }
+
+        private void auto_CheckedChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void metroButton1_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Multiselect = false;
+            openFileDialog1.Filter = "";
+            var i = openFileDialog1.ShowDialog();
+            switch (i)
+            {
+                case DialogResult.OK:
+                    session = getSession(IP.Text, "root", Password.Text, int.Parse(Port.Text));
+                    session.PutFiles(openFileDialog1.FileName, "file");
+                    session.ExecuteCommand("jtool -e arch -arch arm64 file && mv file.arch_arm64 file && jtool --ent file >> new.ent");
+                    session.GetFiles("new.ent", new FileInfo(openFileDialog1.FileName).Name + ".ent");
+                    session.ExecuteCommand("rm new.ent file");
+                    session.Close();
+                    output.Text += "Extracted entitlements to Tweak Installer directory" + Environment.NewLine;
+                    break;
+            }
+        }
+
+        private void customentitlements_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Multiselect = false;
+            openFileDialog1.Filter = "Entitlements|*.ent|All Files|*.*";
+            var i = openFileDialog1.ShowDialog();
+            switch (i)
+            {
+                case DialogResult.OK:
+                    if (File.Exists(openFileDialog1.FileName))
+                    {
+                        deleteIfExists("entitlements.ent");
+                        File.Copy(openFileDialog1.FileName, "entitlements.ent");
+                        output.Text += "Using custom entitlements" + Environment.NewLine;
+                    }
+                    break;
+            }
+        }
+
+        private void defaultentitlements_Click(object sender, EventArgs e)
+        {
+            if (File.Exists("platform-binary.ent"))
+            {
+                deleteIfExists("entitlements.ent");
+                File.Copy("platform-binary.ent", "entitlements.ent");
+                output.Text += "Using default entitlements" + Environment.NewLine;
+            }
+            else
+            {
+                using (WebClient c = new WebClient())
+                {
+                    c.DownloadFile("https://raw.githubusercontent.com/josephwalden13/tweak-installer/master/bin/Debug/platform-binary.ent", "platform-binary.ent");
+                    deleteIfExists("entitlements.ent");
+                    File.Copy("platform-binary.ent", "entitlements.ent");
+                    output.Text += "Using default entitlements" + Environment.NewLine;
+                }
+            }
+        }
+
+        private void DontSign_Click(object sender, EventArgs e)
+        {
+            dont_sign = true;
+            output.Text += "Won't sign applications" + Environment.NewLine;
+        }
+
+        private void verbosemode_Click(object sender, EventArgs e)
+        {
+            verbose = true;
+            output.Text += "Verbose mode" + Environment.NewLine;
+        }
+
+        private void openterminal_Click(object sender, EventArgs e)
+        {
+            Process.Start("putty.exe", IP.Text + ":" + Port.Text + " -l root -pw " + Password.Text);
+        }
+
+        private void metroButton1_Click_1(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/josephwalden13/tweak-installer/issues");
+        }
+
+        private void metroButton2_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://twitter.com/jmw_2468");
+        }
+
+        private void metroButton6_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://twitter.com/passivemodding");
+        }
+
+        private void metroButton9_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/PassiveModding");
+        }
+
+        private void metroButton8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void metroButton7_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://discord.gg/ZKXqt2a");
+        }
+
+        private void metroButton3_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://www.reddit.com/user/josephwalden/");
+        }
+
+        private void metroButton4_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/josephwalden13/");
+        }
+
+        private void metroButton5_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://paypal.me/JosephWalden");
+        }
+
+        private void metroButton10_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://www.reddit.com/r/jailbreak/");
+        }
+
+        private void metroButton11_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://discord.gg/3Bs98ga");
+        }
+
+        private void metroButton8_Click_1(object sender, EventArgs e)
+        {
+            Process.Start("https://coolstar.org/electra/");
+        }
+
+        public void emptyDir(string path, bool verbose1 = false)
+        {
+            if (Directory.Exists(path))
+            {
+                Directory.Delete(path, true);
+                if (verbose1) log("Deleted " + path);
+            }
+            Directory.CreateDirectory(path);
+            if (verbose1) log("Created directory " + path);
+        }
+        public void uninstallFiles(Session session1)
         {
             log("Preparing to uninstall");
             bool overwrite = false;
@@ -997,7 +823,6 @@ namespace Tweak_Installer
                                     overwrite = true;
                                     break;
                                 case 2:
-                                    action = false;
                                     go = true;
                                     break;
                             }
@@ -1008,7 +833,7 @@ namespace Tweak_Installer
                     if (action || overwrite)
                     {
                         string path = i.Replace(i.Substring(i.LastIndexOf('\\')), "");
-                        session.PutFiles(new FileInfo("backup" + convert_path(i)).ToString().Replace("/", "\\"), convert_path(path) + "/" + new FileInfo(i).Name);
+                        session1.PutFiles(new FileInfo("backup" + convert_path(i)).ToString().Replace("/", "\\"), convert_path(path) + "/" + new FileInfo(i).Name);
                         if (verbose) log("Reinstalled " + i);
                     }
                     else
@@ -1024,31 +849,134 @@ namespace Tweak_Installer
                 script += "rm " + i + "\n";
             }
             File.WriteAllText("script.sh", script);
-            session.PutFiles("script.sh", "script.sh");
-            session.ExecuteCommand("sh script.sh");
+            session1.PutFiles("script.sh", "script.sh");
+            session1.ExecuteCommand("sh script.sh");
             if (Directory.Exists("files\\Applications"))
             {
                 if (verbose) log("uicache refresh required");
                 uicache = true;
             }
             log("Locating and removing *some* empty folders");
-            session.ExecuteCommand("find /System/Library/Themes/ -type d -empty -delete");
-            session.ExecuteCommand("find /usr/ -type d -empty -delete");
-            session.ExecuteCommand("find /Applications/ -type d -empty -delete");
-            session.ExecuteCommand("find /Library/ -type d -empty -delete");
-            session.ExecuteCommand("find /bootstrap/Library/Themes/* -type d -empty -delete");
-            session.ExecuteCommand("find /bootstrap/Library/PreferenceLoader/* -type d -empty -delete");
-            session.ExecuteCommand("find /bootstrap/Library/PreferenceBundles/* -type d -empty -delete");
-            session.ExecuteCommand("find /bootstrap/Library/SBInject/* -type d -empty -delete");
+            session1.ExecuteCommand("find /System/Library/Themes/ -type d -empty -delete");
+            session1.ExecuteCommand("find /usr/ -type d -empty -delete");
+            session1.ExecuteCommand("find /Applications/ -type d -empty -delete");
+            session1.ExecuteCommand("find /Library/ -type d -empty -delete");
+            session1.ExecuteCommand("find /bootstrap/Library/Themes/* -type d -empty -delete");
+            session1.ExecuteCommand("find /bootstrap/Library/PreferenceLoader/* -type d -empty -delete");
+            session1.ExecuteCommand("find /bootstrap/Library/PreferenceBundles/* -type d -empty -delete");
+            session1.ExecuteCommand("find /bootstrap/Library/SBInject/* -type d -empty -delete");
             if (File.Exists("postrm"))
             {
                 if (verbose) log("Running postrm script");
-                session.PutFiles("postrm", "script");
-                session.ExecuteCommand("./script && rm script");
+                session1.PutFiles("postrm", "script");
+                session1.ExecuteCommand("./script && rm script");
             }
             clean();
-            finish(session);
+            Finish(session1);
             log("Done");
+        }
+        #endregion
+        private void Install_Click(object sender, EventArgs e)
+        {
+            EmptyDir("files");
+            if (!enabled)
+            {
+                MessageBox.Show("Please select a deb, ipa or zip first");
+                return;
+            }
+            clean();
+            getOptions();
+            session = getSession(IP.Text, "root", Password.Text, int.Parse(Port.Text));
+            getJailbreakSpecificOptions(session);
+            foreach (string tweak in tweaks)
+            {
+                clean();
+                if (tweak.Contains(".deb"))
+                {
+                    extractDeb(tweak);
+                }
+                else if (tweak.Contains(".ipa"))
+                {
+                    extractIPA(tweak);
+                }
+                else
+                {
+                    extractZip(tweak);
+                }
+            }
+            if (convert) convertTweaks();
+            getFiles();
+            installFiles(session);
+            log("");
+        }
+
+        private void Select_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Multiselect = true;
+            openFileDialog1.Filter = "Tweaks|*.deb;*.zip;*.ipa";
+            tweaks.Clear();
+            TweakList.Text = "";
+            var f = openFileDialog1.ShowDialog();
+            switch (f)
+            {
+                case DialogResult.OK:
+                {
+                    enabled = true;
+                    foreach (string i in openFileDialog1.FileNames)
+                    {
+                        tweaks.Add(i);
+                    }
+                    foreach (string i in openFileDialog1.SafeFileNames)
+                    {
+                        filenamesshort.Add(i);
+                    }
+                    break;
+                }
+                default:
+                    enabled = false;
+                    break;
+            }
+
+            TweakList.Lines = filenamesshort.ToArray();
+        }
+        private void Uninstall_Click(object sender, EventArgs e)
+        {
+            emptyDir("files");
+            if (!enabled)
+            {
+                MessageBox.Show("Please select a deb, ipa or zip first");
+                return;
+            }
+            clean();
+            getOptions();
+            session = getSession(IP.Text, "root", Password.Text, int.Parse(Port.Text));
+            getJailbreakSpecificOptions(session);
+            foreach (string tweak in tweaks)
+            {
+                clean();
+                if (tweak.Contains(".deb"))
+                {
+                    extractDeb(tweak);
+                }
+                else if (tweak.Contains(".ipa"))
+                {
+                    extractIPA(tweak);
+                }
+                else
+                {
+                    extractZip(tweak);
+                }
+            }
+            if (convert) convertTweaks();
+            if (File.Exists("prerm"))
+            {
+                if (verbose) log("Running prerm script");
+                session.PutFiles("prerm", "script");
+                session.ExecuteCommand("./script && rm script");
+            }
+            getFiles();
+            uninstallFiles(session);
+            log("");
         }
     }
 }

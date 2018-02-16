@@ -1,36 +1,60 @@
-C:\Users\Robert\Desktop\Tweak-Installer-GUI-master\bin\Debug\Tweak Installer.exe.config
-C:\Users\Robert\Desktop\Tweak-Installer-GUI-master\bin\Debug\Tweak Installer.exe
-C:\Users\Robert\Desktop\Tweak-Installer-GUI-master\bin\Debug\Tweak Installer.pdb
-C:\Users\Robert\Desktop\Tweak-Installer-GUI-master\obj\Debug\Tweak Installer.csprojResolveAssemblyReference.cache
-C:\Users\Robert\Desktop\Tweak-Installer-GUI-master\obj\Debug\Tweak_Installer.Main.resources
-C:\Users\Robert\Desktop\Tweak-Installer-GUI-master\obj\Debug\Tweak_Installer.Properties.Resources.resources
-C:\Users\Robert\Desktop\Tweak-Installer-GUI-master\obj\Debug\Tweak Installer.csproj.GenerateResource.Cache
-C:\Users\Robert\Desktop\Tweak-Installer-GUI-master\obj\Debug\Tweak Installer.csproj.CoreCompileInputs.cache
-C:\Users\Robert\Desktop\Tweak-Installer-GUI-master\obj\Debug\Tweak Installer.exe
-C:\Users\Robert\Desktop\Tweak-Installer-GUI-master\obj\Debug\Tweak Installer.pdb
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\C\Tweak Installer\bin\Debug\Tweak Installer.exe.config
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\C\Tweak Installer\bin\Debug\Tweak Installer.exe
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\C\Tweak Installer\bin\Debug\Tweak Installer.pdb
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\C\Tweak Installer\obj\Debug\Tweak Installer.csprojResolveAssemblyReference.cache
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\C\Tweak Installer\obj\Debug\Tweak_Installer.Main.resources
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\C\Tweak Installer\obj\Debug\Tweak_Installer.Properties.Resources.resources
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\C\Tweak Installer\obj\Debug\Tweak Installer.csproj.GenerateResource.Cache
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\C\Tweak Installer\obj\Debug\Tweak Installer.csproj.CoreCompileInputs.cache
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\C\Tweak Installer\obj\Debug\Tweak Installer.exe
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\C\Tweak Installer\obj\Debug\Tweak Installer.pdb
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\C\Tweak Installer\bin\Debug\WinSCPnet.dll
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\tweak-installer\bin\Debug\Tweak Installer.exe.config
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\tweak-installer\bin\Debug\Tweak Installer.exe
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\tweak-installer\bin\Debug\Tweak Installer.pdb
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\tweak-installer\obj\Debug\Tweak_Installer.Main.resources
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\tweak-installer\obj\Debug\Tweak_Installer.Properties.Resources.resources
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\tweak-installer\obj\Debug\Tweak Installer.csproj.GenerateResource.Cache
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\tweak-installer\obj\Debug\Tweak Installer.csproj.CoreCompileInputs.cache
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\tweak-installer\obj\Debug\Tweak Installer.exe
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\tweak-installer\obj\Debug\Tweak Installer.pdb
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\tweak-installer\bin\Debug\jLib.dll
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\tweak-installer\bin\Debug\JMWCrypto.dll
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\tweak-installer\bin\Debug\jLib.pdb
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\tweak-installer\bin\Debug\JMWCrypto.pdb
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\tweak-installer\obj\Debug\Tweak_Installer.YNAD.resources
-C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\tweak-installer\obj\Debug\Tweak Installer.csprojResolveAssemblyReference.cache
+c:\users\laptop lcj\source\repos\Tweak Installer\Tweak Installer\bin\Debug\Tweak Installer.exe.config
+c:\users\laptop lcj\source\repos\Tweak Installer\Tweak Installer\bin\Debug\Tweak Installer.exe
+c:\users\laptop lcj\source\repos\Tweak Installer\Tweak Installer\bin\Debug\Tweak Installer.pdb
+c:\users\laptop lcj\source\repos\Tweak Installer\Tweak Installer\bin\Debug\MetroFramework.Design.dll
+c:\users\laptop lcj\source\repos\Tweak Installer\Tweak Installer\bin\Debug\MetroFramework.dll
+c:\users\laptop lcj\source\repos\Tweak Installer\Tweak Installer\bin\Debug\MetroFramework.Fonts.dll
+c:\users\laptop lcj\source\repos\Tweak Installer\Tweak Installer\obj\Debug\Tweak Installer.csprojResolveAssemblyReference.cache
+c:\users\laptop lcj\source\repos\Tweak Installer\Tweak Installer\obj\Debug\Tweak_Installer.Form1.resources
+c:\users\laptop lcj\source\repos\Tweak Installer\Tweak Installer\obj\Debug\Tweak_Installer.Properties.Resources.resources
+c:\users\laptop lcj\source\repos\Tweak Installer\Tweak Installer\obj\Debug\Tweak Installer.csproj.GenerateResource.Cache
+c:\users\laptop lcj\source\repos\Tweak Installer\Tweak Installer\obj\Debug\Tweak Installer.csproj.CoreCompileInputs.cache
+c:\users\laptop lcj\source\repos\Tweak Installer\Tweak Installer\obj\Debug\Tweak Installer.exe
+c:\users\laptop lcj\source\repos\Tweak Installer\Tweak Installer\obj\Debug\Tweak Installer.pdb
+c:\users\laptop lcj\source\repos\Tweak Installer\Tweak Installer\bin\Debug\WinSCP.exe
+c:\users\laptop lcj\source\repos\Tweak Installer\Tweak Installer\bin\Debug\x64\7z.dll
+c:\users\laptop lcj\source\repos\Tweak Installer\Tweak Installer\bin\Debug\x86\7z.dll
+c:\users\laptop lcj\source\repos\Tweak Installer\Tweak Installer\bin\Debug\jLib.dll
+c:\users\laptop lcj\source\repos\Tweak Installer\Tweak Installer\bin\Debug\SevenZipExtractor.dll
+c:\users\laptop lcj\source\repos\Tweak Installer\Tweak Installer\bin\Debug\WinSCPnet.dll
+c:\users\laptop lcj\source\repos\Tweak Installer\Tweak Installer\obj\Debug\Tweak_Installer.YNAD.resources
+D:\Documents\GitHub\tweak-installer\Tweak Installer\bin\Debug\WinSCP.exe
+D:\Documents\GitHub\tweak-installer\Tweak Installer\bin\Debug\x64\7z.dll
+D:\Documents\GitHub\tweak-installer\Tweak Installer\bin\Debug\x86\7z.dll
+D:\Documents\GitHub\tweak-installer\Tweak Installer\bin\Debug\Tweak Installer.exe.config
+D:\Documents\GitHub\tweak-installer\Tweak Installer\bin\Debug\Tweak Installer.exe
+D:\Documents\GitHub\tweak-installer\Tweak Installer\bin\Debug\Tweak Installer.pdb
+D:\Documents\GitHub\tweak-installer\Tweak Installer\bin\Debug\jLib.dll
+D:\Documents\GitHub\tweak-installer\Tweak Installer\bin\Debug\MetroFramework.Design.dll
+D:\Documents\GitHub\tweak-installer\Tweak Installer\bin\Debug\MetroFramework.dll
+D:\Documents\GitHub\tweak-installer\Tweak Installer\bin\Debug\MetroFramework.Fonts.dll
+D:\Documents\GitHub\tweak-installer\Tweak Installer\bin\Debug\SevenZipExtractor.dll
+D:\Documents\GitHub\tweak-installer\Tweak Installer\bin\Debug\WinSCPnet.dll
+D:\Documents\GitHub\tweak-installer\Tweak Installer\obj\Debug\Tweak Installer.csprojResolveAssemblyReference.cache
+D:\Documents\GitHub\tweak-installer\Tweak Installer\obj\Debug\Tweak_Installer.Main.resources
+D:\Documents\GitHub\tweak-installer\Tweak Installer\obj\Debug\Tweak_Installer.Properties.Resources.resources
+D:\Documents\GitHub\tweak-installer\Tweak Installer\obj\Debug\Tweak_Installer.YNAD.resources
+D:\Documents\GitHub\tweak-installer\Tweak Installer\obj\Debug\Tweak Installer.csproj.GenerateResource.Cache
+D:\Documents\GitHub\tweak-installer\Tweak Installer\obj\Debug\Tweak Installer.csproj.CoreCompileInputs.cache
+D:\Documents\GitHub\tweak-installer\Tweak Installer\obj\Debug\Tweak Installer.exe
+D:\Documents\GitHub\tweak-installer\Tweak Installer\obj\Debug\Tweak Installer.pdb
+D:\Documents\GitHub\tweak-installer\obj\Debug\Tweak Installer.exe
+D:\Documents\GitHub\tweak-installer\obj\Debug\Tweak Installer.pdb
+D:\Documents\GitHub\tweak-installer\bin\Debug\WinSCP.exe
+D:\Documents\GitHub\tweak-installer\bin\Debug\x64\7z.dll
+D:\Documents\GitHub\tweak-installer\bin\Debug\x86\7z.dll
+D:\Documents\GitHub\tweak-installer\bin\Debug\Tweak Installer.exe.config
+D:\Documents\GitHub\tweak-installer\bin\Debug\Tweak Installer.exe
+D:\Documents\GitHub\tweak-installer\bin\Debug\Tweak Installer.pdb
+D:\Documents\GitHub\tweak-installer\bin\Debug\jLib.dll
+D:\Documents\GitHub\tweak-installer\bin\Debug\MetroFramework.Design.dll
+D:\Documents\GitHub\tweak-installer\bin\Debug\MetroFramework.dll
+D:\Documents\GitHub\tweak-installer\bin\Debug\MetroFramework.Fonts.dll
+D:\Documents\GitHub\tweak-installer\bin\Debug\SevenZipExtractor.dll
+D:\Documents\GitHub\tweak-installer\bin\Debug\WinSCPnet.dll
+D:\Documents\GitHub\tweak-installer\obj\Debug\Tweak Installer.csprojResolveAssemblyReference.cache
+D:\Documents\GitHub\tweak-installer\obj\Debug\Tweak_Installer.Main.resources
+D:\Documents\GitHub\tweak-installer\obj\Debug\Tweak_Installer.Properties.Resources.resources
+D:\Documents\GitHub\tweak-installer\obj\Debug\Tweak_Installer.YNAD.resources
+D:\Documents\GitHub\tweak-installer\obj\Debug\Tweak Installer.csproj.GenerateResource.Cache
+D:\Documents\GitHub\tweak-installer\obj\Debug\Tweak Installer.csproj.CoreCompileInputs.cache

@@ -28,528 +28,796 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.installbtn = new System.Windows.Forms.Button();
-            this.uninstallbtn = new System.Windows.Forms.Button();
-            this.host = new System.Windows.Forms.TextBox();
-            this.pass = new System.Windows.Forms.TextBox();
-            this.iplabel = new System.Windows.Forms.Label();
-            this.passwordlabel = new System.Windows.Forms.Label();
-            this.select = new System.Windows.Forms.Button();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.respringbtn = new System.Windows.Forms.Button();
-            this.uicachebtn = new System.Windows.Forms.Button();
-            this.auto = new System.Windows.Forms.CheckBox();
-            this.error = new System.Windows.Forms.LinkLabel();
-            this.version = new System.Windows.Forms.Label();
-            this.twitter = new System.Windows.Forms.LinkLabel();
-            this.reddit = new System.Windows.Forms.LinkLabel();
-            this.creator = new System.Windows.Forms.LinkLabel();
-            this.ui = new System.Windows.Forms.LinkLabel();
-            this.debslnk = new System.Windows.Forms.Button();
-            this.github = new System.Windows.Forms.LinkLabel();
-            this.autolabel = new System.Windows.Forms.Label();
-            this.paypal = new System.Windows.Forms.LinkLabel();
-            this.portlbl = new System.Windows.Forms.Label();
-            this.port = new System.Windows.Forms.TextBox();
-            this.terminal = new System.Windows.Forms.Button();
-            this.output = new System.Windows.Forms.TextBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.selectDebsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.extractEntitlementsFromLocalFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.useCustomEntitlementsFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.useDefaultEntitlementsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dontSignApplicationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verboseModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
+            this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
+            this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
+            this.UiCache = new MetroFramework.Controls.MetroButton();
+            this.auto = new MetroFramework.Controls.MetroCheckBox();
+            this.Respring = new MetroFramework.Controls.MetroButton();
+            this.Uninstall = new MetroFramework.Controls.MetroButton();
+            this.Install = new MetroFramework.Controls.MetroButton();
+            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
+            this.TweakList = new MetroFramework.Controls.MetroTextBox();
+            this.output = new MetroFramework.Controls.MetroTextBox();
+            this.Select = new MetroFramework.Controls.MetroButton();
+            this.Port = new MetroFramework.Controls.MetroTextBox();
+            this.Password = new MetroFramework.Controls.MetroTextBox();
+            this.IP = new MetroFramework.Controls.MetroTextBox();
+            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
+            this.Entitlementsfromlocal = new MetroFramework.Controls.MetroButton();
+            this.customentitlements = new MetroFramework.Controls.MetroButton();
+            this.defaultentitlements = new MetroFramework.Controls.MetroButton();
+            this.verbosemode = new MetroFramework.Controls.MetroButton();
+            this.openterminal = new MetroFramework.Controls.MetroButton();
+            this.DontSign = new MetroFramework.Controls.MetroButton();
+            this.metroButton1 = new MetroFramework.Controls.MetroButton();
+            this.metroButton2 = new MetroFramework.Controls.MetroButton();
+            this.metroButton3 = new MetroFramework.Controls.MetroButton();
+            this.metroButton4 = new MetroFramework.Controls.MetroButton();
+            this.metroButton5 = new MetroFramework.Controls.MetroButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.metroButton6 = new MetroFramework.Controls.MetroButton();
+            this.metroButton9 = new MetroFramework.Controls.MetroButton();
+            this.metroButton7 = new MetroFramework.Controls.MetroButton();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.metroButton10 = new MetroFramework.Controls.MetroButton();
+            this.metroButton11 = new MetroFramework.Controls.MetroButton();
+            this.metroButton8 = new MetroFramework.Controls.MetroButton();
+            this.metroTabControl1.SuspendLayout();
+            this.metroTabPage1.SuspendLayout();
+            this.metroTabPage2.SuspendLayout();
+            this.metroTabPage3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // installbtn
+            // metroTabControl1
             // 
-            this.installbtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.installbtn.FlatAppearance.BorderSize = 0;
-            this.installbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.installbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, System.Drawing.FontStyle.Bold);
-            this.installbtn.ForeColor = System.Drawing.Color.Gainsboro;
-            this.installbtn.Location = new System.Drawing.Point(9, 283);
-            this.installbtn.Name = "installbtn";
-            this.installbtn.Size = new System.Drawing.Size(220, 75);
-            this.installbtn.TabIndex = 5;
-            this.installbtn.Text = "Install";
-            this.installbtn.UseVisualStyleBackColor = false;
-            this.installbtn.Click += new System.EventHandler(this.install_Click);
+            this.metroTabControl1.Controls.Add(this.metroTabPage1);
+            this.metroTabControl1.Controls.Add(this.metroTabPage2);
+            this.metroTabControl1.Controls.Add(this.metroTabPage3);
+            this.metroTabControl1.Location = new System.Drawing.Point(23, 63);
+            this.metroTabControl1.Name = "metroTabControl1";
+            this.metroTabControl1.SelectedIndex = 2;
+            this.metroTabControl1.Size = new System.Drawing.Size(704, 414);
+            this.metroTabControl1.Style = MetroFramework.MetroColorStyle.Purple;
+            this.metroTabControl1.TabIndex = 0;
+            this.metroTabControl1.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroTabControl1.UseSelectable = true;
+            this.metroTabControl1.UseStyleColors = true;
             // 
-            // uninstallbtn
+            // metroTabPage1
             // 
-            this.uninstallbtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.uninstallbtn.FlatAppearance.BorderSize = 0;
-            this.uninstallbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.uninstallbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 32F, System.Drawing.FontStyle.Bold);
-            this.uninstallbtn.ForeColor = System.Drawing.Color.Gainsboro;
-            this.uninstallbtn.Location = new System.Drawing.Point(235, 283);
-            this.uninstallbtn.Name = "uninstallbtn";
-            this.uninstallbtn.Size = new System.Drawing.Size(220, 75);
-            this.uninstallbtn.TabIndex = 6;
-            this.uninstallbtn.Text = "Uninstall";
-            this.uninstallbtn.UseVisualStyleBackColor = false;
-            this.uninstallbtn.Click += new System.EventHandler(this.Uninstall_Click);
+            this.metroTabPage1.Controls.Add(this.UiCache);
+            this.metroTabPage1.Controls.Add(this.auto);
+            this.metroTabPage1.Controls.Add(this.Respring);
+            this.metroTabPage1.Controls.Add(this.Uninstall);
+            this.metroTabPage1.Controls.Add(this.Install);
+            this.metroTabPage1.Controls.Add(this.metroLabel5);
+            this.metroTabPage1.Controls.Add(this.metroLabel4);
+            this.metroTabPage1.Controls.Add(this.TweakList);
+            this.metroTabPage1.Controls.Add(this.output);
+            this.metroTabPage1.Controls.Add(this.Select);
+            this.metroTabPage1.Controls.Add(this.Port);
+            this.metroTabPage1.Controls.Add(this.Password);
+            this.metroTabPage1.Controls.Add(this.IP);
+            this.metroTabPage1.Controls.Add(this.metroLabel3);
+            this.metroTabPage1.Controls.Add(this.metroLabel2);
+            this.metroTabPage1.Controls.Add(this.metroLabel1);
+            this.metroTabPage1.HorizontalScrollbarBarColor = true;
+            this.metroTabPage1.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroTabPage1.HorizontalScrollbarSize = 10;
+            this.metroTabPage1.Location = new System.Drawing.Point(4, 38);
+            this.metroTabPage1.Name = "metroTabPage1";
+            this.metroTabPage1.Size = new System.Drawing.Size(696, 372);
+            this.metroTabPage1.Style = MetroFramework.MetroColorStyle.Purple;
+            this.metroTabPage1.TabIndex = 0;
+            this.metroTabPage1.Text = "Main";
+            this.metroTabPage1.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroTabPage1.UseStyleColors = true;
+            this.metroTabPage1.VerticalScrollbarBarColor = true;
+            this.metroTabPage1.VerticalScrollbarHighlightOnWheel = false;
+            this.metroTabPage1.VerticalScrollbarSize = 10;
             // 
-            // host
+            // UiCache
             // 
-            this.host.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.host.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.host.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.host.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.host.ForeColor = System.Drawing.Color.White;
-            this.host.Location = new System.Drawing.Point(238, 35);
-            this.host.Name = "host";
-            this.host.Size = new System.Drawing.Size(200, 27);
-            this.host.TabIndex = 0;
-            this.host.TextChanged += new System.EventHandler(this.host_TextChanged);
-            // 
-            // pass
-            // 
-            this.pass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.pass.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.pass.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pass.ForeColor = System.Drawing.Color.White;
-            this.pass.Location = new System.Drawing.Point(238, 72);
-            this.pass.Name = "pass";
-            this.pass.PasswordChar = '*';
-            this.pass.Size = new System.Drawing.Size(200, 27);
-            this.pass.TabIndex = 1;
-            this.pass.TextChanged += new System.EventHandler(this.pass_TextChanged);
-            // 
-            // iplabel
-            // 
-            this.iplabel.AutoSize = true;
-            this.iplabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Bold);
-            this.iplabel.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.iplabel.Location = new System.Drawing.Point(106, 33);
-            this.iplabel.Name = "iplabel";
-            this.iplabel.Size = new System.Drawing.Size(126, 29);
-            this.iplabel.TabIndex = 17;
-            this.iplabel.Text = "device ip:";
-            // 
-            // passwordlabel
-            // 
-            this.passwordlabel.AutoSize = true;
-            this.passwordlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Bold);
-            this.passwordlabel.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.passwordlabel.Location = new System.Drawing.Point(46, 72);
-            this.passwordlabel.Name = "passwordlabel";
-            this.passwordlabel.Size = new System.Drawing.Size(186, 29);
-            this.passwordlabel.TabIndex = 18;
-            this.passwordlabel.Text = "root password:";
-            // 
-            // select
-            // 
-            this.select.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.select.FlatAppearance.BorderSize = 0;
-            this.select.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.select.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
-            this.select.ForeColor = System.Drawing.Color.DimGray;
-            this.select.Location = new System.Drawing.Point(9, 226);
-            this.select.Name = "select";
-            this.select.Size = new System.Drawing.Size(446, 51);
-            this.select.TabIndex = 4;
-            this.select.Text = "Select Debs, Zips and IPAs";
-            this.select.UseVisualStyleBackColor = false;
-            this.select.Click += new System.EventHandler(this.select_Click);
-            // 
-            // openFileDialog
-            // 
-            this.openFileDialog.FileName = "example.deb";
-            this.openFileDialog.Multiselect = true;
-            // 
-            // respringbtn
-            // 
-            this.respringbtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.respringbtn.FlatAppearance.BorderSize = 0;
-            this.respringbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.respringbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 23F, System.Drawing.FontStyle.Bold);
-            this.respringbtn.ForeColor = System.Drawing.Color.White;
-            this.respringbtn.Location = new System.Drawing.Point(9, 364);
-            this.respringbtn.Name = "respringbtn";
-            this.respringbtn.Size = new System.Drawing.Size(220, 49);
-            this.respringbtn.TabIndex = 7;
-            this.respringbtn.Text = "Respring";
-            this.respringbtn.UseVisualStyleBackColor = false;
-            this.respringbtn.Click += new System.EventHandler(this.respring_Click);
-            // 
-            // uicachebtn
-            // 
-            this.uicachebtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.uicachebtn.FlatAppearance.BorderSize = 0;
-            this.uicachebtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.uicachebtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 23F, System.Drawing.FontStyle.Bold);
-            this.uicachebtn.ForeColor = System.Drawing.Color.White;
-            this.uicachebtn.Location = new System.Drawing.Point(235, 364);
-            this.uicachebtn.Name = "uicachebtn";
-            this.uicachebtn.Size = new System.Drawing.Size(220, 49);
-            this.uicachebtn.TabIndex = 8;
-            this.uicachebtn.Text = "Uicache";
-            this.uicachebtn.UseVisualStyleBackColor = false;
-            this.uicachebtn.Click += new System.EventHandler(this.uicache_Click);
+            this.UiCache.Location = new System.Drawing.Point(4, 207);
+            this.UiCache.Name = "UiCache";
+            this.UiCache.Size = new System.Drawing.Size(194, 23);
+            this.UiCache.Style = MetroFramework.MetroColorStyle.Purple;
+            this.UiCache.TabIndex = 17;
+            this.UiCache.Text = "Uicache";
+            this.UiCache.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.UiCache.UseSelectable = true;
+            this.UiCache.UseStyleColors = true;
+            this.UiCache.Click += new System.EventHandler(this.UiCache_Click);
             // 
             // auto
             // 
-            this.auto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.auto.AutoSize = true;
-            this.auto.Checked = true;
-            this.auto.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.auto.FlatAppearance.BorderSize = 0;
-            this.auto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.auto.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F, System.Drawing.FontStyle.Bold);
-            this.auto.ForeColor = System.Drawing.Color.White;
-            this.auto.Location = new System.Drawing.Point(56, 423);
+            this.auto.Location = new System.Drawing.Point(4, 155);
             this.auto.Name = "auto";
-            this.auto.Size = new System.Drawing.Size(12, 11);
-            this.auto.TabIndex = 9;
-            this.auto.UseVisualStyleBackColor = true;
+            this.auto.Size = new System.Drawing.Size(176, 17);
+            this.auto.Style = MetroFramework.MetroColorStyle.Purple;
+            this.auto.TabIndex = 16;
+            this.auto.Text = "auto respring and uicache";
+            this.auto.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.auto.UseSelectable = true;
+            this.auto.UseStyleColors = true;
+            this.auto.CheckedChanged += new System.EventHandler(this.auto_CheckedChanged);
             // 
-            // error
+            // Respring
             // 
-            this.error.AutoSize = true;
-            this.error.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.error.LinkColor = System.Drawing.Color.Red;
-            this.error.Location = new System.Drawing.Point(4, 451);
-            this.error.Name = "error";
-            this.error.Size = new System.Drawing.Size(467, 29);
-            this.error.TabIndex = 10;
-            this.error.TabStop = true;
-            this.error.Text = "report errors / bugs / general problems";
-            this.error.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.error_LinkClicked);
+            this.Respring.Location = new System.Drawing.Point(4, 178);
+            this.Respring.Name = "Respring";
+            this.Respring.Size = new System.Drawing.Size(194, 23);
+            this.Respring.Style = MetroFramework.MetroColorStyle.Purple;
+            this.Respring.TabIndex = 15;
+            this.Respring.Text = "Respring";
+            this.Respring.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.Respring.UseSelectable = true;
+            this.Respring.UseStyleColors = true;
+            this.Respring.Click += new System.EventHandler(this.Respring_Click);
             // 
-            // version
+            // Uninstall
             // 
-            this.version.AutoSize = true;
-            this.version.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold);
-            this.version.ForeColor = System.Drawing.Color.DimGray;
-            this.version.Location = new System.Drawing.Point(12, 33);
-            this.version.Name = "version";
-            this.version.Size = new System.Drawing.Size(36, 13);
-            this.version.TabIndex = 16;
-            this.version.Text = "2.0.3";
-            this.version.Click += new System.EventHandler(this.version_Click);
+            this.Uninstall.Location = new System.Drawing.Point(4, 125);
+            this.Uninstall.Name = "Uninstall";
+            this.Uninstall.Size = new System.Drawing.Size(194, 23);
+            this.Uninstall.Style = MetroFramework.MetroColorStyle.Purple;
+            this.Uninstall.TabIndex = 14;
+            this.Uninstall.Text = "Uninstall";
+            this.Uninstall.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.Uninstall.UseSelectable = true;
+            this.Uninstall.UseStyleColors = true;
+            this.Uninstall.Click += new System.EventHandler(this.Uninstall_Click);
             // 
-            // twitter
+            // Install
             // 
-            this.twitter.AutoSize = true;
-            this.twitter.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.twitter.LinkColor = System.Drawing.Color.Red;
-            this.twitter.Location = new System.Drawing.Point(9, 491);
-            this.twitter.Name = "twitter";
-            this.twitter.Size = new System.Drawing.Size(61, 13);
-            this.twitter.TabIndex = 11;
-            this.twitter.TabStop = true;
-            this.twitter.Text = "my twitter";
-            this.twitter.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.twitter_LinkClicked);
+            this.Install.Location = new System.Drawing.Point(4, 96);
+            this.Install.Name = "Install";
+            this.Install.Size = new System.Drawing.Size(194, 23);
+            this.Install.Style = MetroFramework.MetroColorStyle.Purple;
+            this.Install.TabIndex = 13;
+            this.Install.Text = "Install";
+            this.Install.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.Install.UseSelectable = true;
+            this.Install.UseStyleColors = true;
+            this.Install.Click += new System.EventHandler(this.Install_Click);
             // 
-            // reddit
+            // metroLabel5
             // 
-            this.reddit.AutoSize = true;
-            this.reddit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reddit.LinkColor = System.Drawing.Color.Red;
-            this.reddit.Location = new System.Drawing.Point(76, 491);
-            this.reddit.Name = "reddit";
-            this.reddit.Size = new System.Drawing.Size(39, 13);
-            this.reddit.TabIndex = 12;
-            this.reddit.TabStop = true;
-            this.reddit.Text = "reddit";
-            this.reddit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.reddit_LinkClicked);
+            this.metroLabel5.AutoSize = true;
+            this.metroLabel5.Location = new System.Drawing.Point(454, -2);
+            this.metroLabel5.Name = "metroLabel5";
+            this.metroLabel5.Size = new System.Drawing.Size(55, 20);
+            this.metroLabel5.Style = MetroFramework.MetroColorStyle.Purple;
+            this.metroLabel5.TabIndex = 12;
+            this.metroLabel5.Text = "Output:";
+            this.metroLabel5.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroLabel5.UseStyleColors = true;
             // 
-            // creator
+            // metroLabel4
             // 
-            this.creator.AutoSize = true;
-            this.creator.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.creator.LinkColor = System.Drawing.Color.Red;
-            this.creator.Location = new System.Drawing.Point(281, 491);
-            this.creator.Name = "creator";
-            this.creator.Size = new System.Drawing.Size(101, 13);
-            this.creator.TabIndex = 15;
-            this.creator.TabStop = true;
-            this.creator.Text = "by josephwalden";
-            this.creator.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.creator_LinkClicked);
+            this.metroLabel4.AutoSize = true;
+            this.metroLabel4.Location = new System.Drawing.Point(209, -2);
+            this.metroLabel4.Name = "metroLabel4";
+            this.metroLabel4.Size = new System.Drawing.Size(114, 20);
+            this.metroLabel4.Style = MetroFramework.MetroColorStyle.Purple;
+            this.metroLabel4.TabIndex = 11;
+            this.metroLabel4.Text = "Selected Tweaks:";
+            this.metroLabel4.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroLabel4.UseStyleColors = true;
             // 
-            // ui
+            // TweakList
             // 
-            this.ui.AutoSize = true;
-            this.ui.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ui.LinkColor = System.Drawing.Color.Red;
-            this.ui.Location = new System.Drawing.Point(388, 491);
-            this.ui.Name = "ui";
-            this.ui.Size = new System.Drawing.Size(81, 13);
-            this.ui.TabIndex = 16;
-            this.ui.TabStop = true;
-            this.ui.Text = "(ui by brnnkr)";
-            this.ui.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ui_LinkClicked);
             // 
-            // debslnk
             // 
-            this.debslnk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.debslnk.FlatAppearance.BorderSize = 0;
-            this.debslnk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.debslnk.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
-            this.debslnk.ForeColor = System.Drawing.Color.DimGray;
-            this.debslnk.Location = new System.Drawing.Point(12, 169);
-            this.debslnk.Name = "debslnk";
-            this.debslnk.Size = new System.Drawing.Size(220, 51);
-            this.debslnk.TabIndex = 3;
-            this.debslnk.Text = "Get Debs";
-            this.debslnk.UseVisualStyleBackColor = false;
-            this.debslnk.Click += new System.EventHandler(this.debslnk_Click);
             // 
-            // github
-            // 
-            this.github.AutoSize = true;
-            this.github.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.github.LinkColor = System.Drawing.Color.Red;
-            this.github.Location = new System.Drawing.Point(121, 491);
-            this.github.Name = "github";
-            this.github.Size = new System.Drawing.Size(42, 13);
-            this.github.TabIndex = 13;
-            this.github.TabStop = true;
-            this.github.Text = "github";
-            this.github.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.github_LinkClicked);
-            // 
-            // autolabel
-            // 
-            this.autolabel.AutoSize = true;
-            this.autolabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.autolabel.ForeColor = System.Drawing.Color.DimGray;
-            this.autolabel.Location = new System.Drawing.Point(74, 414);
-            this.autolabel.Name = "autolabel";
-            this.autolabel.Size = new System.Drawing.Size(312, 25);
-            this.autolabel.TabIndex = 19;
-            this.autolabel.Text = "automatic respring and uicache";
-            this.autolabel.Click += new System.EventHandler(this.autolabel_Click);
-            // 
-            // paypal
-            // 
-            this.paypal.AutoSize = true;
-            this.paypal.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.paypal.LinkColor = System.Drawing.Color.Red;
-            this.paypal.Location = new System.Drawing.Point(169, 491);
-            this.paypal.Name = "paypal";
-            this.paypal.Size = new System.Drawing.Size(44, 13);
-            this.paypal.TabIndex = 14;
-            this.paypal.TabStop = true;
-            this.paypal.Text = "paypal";
-            this.paypal.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.paypal_LinkClicked);
-            // 
-            // portlbl
-            // 
-            this.portlbl.AutoSize = true;
-            this.portlbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Bold);
-            this.portlbl.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.portlbl.Location = new System.Drawing.Point(163, 102);
-            this.portlbl.Name = "portlbl";
-            this.portlbl.Size = new System.Drawing.Size(66, 29);
-            this.portlbl.TabIndex = 21;
-            this.portlbl.Text = "port:";
-            // 
-            // port
-            // 
-            this.port.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.port.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.port.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.port.ForeColor = System.Drawing.Color.White;
-            this.port.Location = new System.Drawing.Point(238, 105);
-            this.port.Name = "port";
-            this.port.Size = new System.Drawing.Size(200, 27);
-            this.port.TabIndex = 20;
-            this.port.TextChanged += new System.EventHandler(this.port_TextChanged);
-            // 
-            // terminal
-            // 
-            this.terminal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.terminal.FlatAppearance.BorderSize = 0;
-            this.terminal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.terminal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
-            this.terminal.ForeColor = System.Drawing.Color.DimGray;
-            this.terminal.Location = new System.Drawing.Point(235, 169);
-            this.terminal.Name = "terminal";
-            this.terminal.Size = new System.Drawing.Size(220, 51);
-            this.terminal.TabIndex = 22;
-            this.terminal.Text = "Terminal";
-            this.terminal.UseVisualStyleBackColor = false;
-            this.terminal.Click += new System.EventHandler(this.terminal_Click);
+            this.TweakList.CustomButton.Image = null;
+            this.TweakList.CustomButton.Location = new System.Drawing.Point(-111, 1);
+            this.TweakList.CustomButton.Name = "";
+            this.TweakList.CustomButton.Size = new System.Drawing.Size(349, 349);
+            this.TweakList.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.TweakList.CustomButton.TabIndex = 1;
+            this.TweakList.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.TweakList.CustomButton.UseSelectable = true;
+            this.TweakList.CustomButton.Visible = false;
+            this.TweakList.Lines = new string[0];
+            this.TweakList.Location = new System.Drawing.Point(209, 21);
+            this.TweakList.MaxLength = 32767;
+            this.TweakList.Multiline = true;
+            this.TweakList.Name = "TweakList";
+            this.TweakList.PasswordChar = '\0';
+            this.TweakList.ReadOnly = true;
+            this.TweakList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TweakList.SelectedText = "";
+            this.TweakList.SelectionLength = 0;
+            this.TweakList.SelectionStart = 0;
+            this.TweakList.ShortcutsEnabled = true;
+            this.TweakList.Size = new System.Drawing.Size(239, 351);
+            this.TweakList.Style = MetroFramework.MetroColorStyle.Purple;
+            this.TweakList.TabIndex = 10;
+            this.TweakList.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.TweakList.UseSelectable = true;
+            this.TweakList.UseStyleColors = true;
+            this.TweakList.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.TweakList.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // output
             // 
-            this.output.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.output.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.output.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.output.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.output.ForeColor = System.Drawing.Color.White;
-            this.output.Location = new System.Drawing.Point(476, 35);
+            // 
+            // 
+            // 
+            this.output.CustomButton.Image = null;
+            this.output.CustomButton.Location = new System.Drawing.Point(-111, 1);
+            this.output.CustomButton.Name = "";
+            this.output.CustomButton.Size = new System.Drawing.Size(349, 349);
+            this.output.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.output.CustomButton.TabIndex = 1;
+            this.output.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.output.CustomButton.UseSelectable = true;
+            this.output.CustomButton.Visible = false;
+            this.output.Lines = new string[0];
+            this.output.Location = new System.Drawing.Point(454, 21);
+            this.output.MaxLength = 32767;
             this.output.Multiline = true;
             this.output.Name = "output";
+            this.output.PasswordChar = '\0';
             this.output.ReadOnly = true;
-            this.output.Size = new System.Drawing.Size(306, 469);
-            this.output.TabIndex = 23;
+            this.output.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.output.SelectedText = "";
+            this.output.SelectionLength = 0;
+            this.output.SelectionStart = 0;
+            this.output.ShortcutsEnabled = true;
+            this.output.Size = new System.Drawing.Size(239, 351);
+            this.output.Style = MetroFramework.MetroColorStyle.Purple;
+            this.output.TabIndex = 9;
+            this.output.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.output.UseSelectable = true;
+            this.output.UseStyleColors = true;
+            this.output.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.output.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
-            // menuStrip1
+            // Select
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.advancedToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(794, 24);
-            this.menuStrip1.TabIndex = 24;
-            this.menuStrip1.Text = "menuStrip1";
+            this.Select.Location = new System.Drawing.Point(4, 67);
+            this.Select.Name = "Select";
+            this.Select.Size = new System.Drawing.Size(194, 23);
+            this.Select.Style = MetroFramework.MetroColorStyle.Purple;
+            this.Select.TabIndex = 8;
+            this.Select.Text = "Select Debs, Zips and IPAs";
+            this.Select.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.Select.UseSelectable = true;
+            this.Select.UseStyleColors = true;
+            this.Select.Click += new System.EventHandler(this.Select_Click);
             // 
-            // fileToolStripMenuItem
+            // Port
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.selectDebsToolStripMenuItem});
-            this.fileToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
             // 
-            // selectDebsToolStripMenuItem
             // 
-            this.selectDebsToolStripMenuItem.Name = "selectDebsToolStripMenuItem";
-            this.selectDebsToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
-            this.selectDebsToolStripMenuItem.Text = "Select Files";
-            this.selectDebsToolStripMenuItem.Click += new System.EventHandler(this.selectDebsToolStripMenuItem_Click);
             // 
-            // advancedToolStripMenuItem
+            this.Port.CustomButton.Image = null;
+            this.Port.CustomButton.Location = new System.Drawing.Point(64, 1);
+            this.Port.CustomButton.Name = "";
+            this.Port.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.Port.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.Port.CustomButton.TabIndex = 1;
+            this.Port.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.Port.CustomButton.UseSelectable = true;
+            this.Port.CustomButton.Visible = false;
+            this.Port.Lines = new string[] {
+        "22"};
+            this.Port.Location = new System.Drawing.Point(112, 41);
+            this.Port.MaxLength = 15;
+            this.Port.Name = "Port";
+            this.Port.PasswordChar = '\0';
+            this.Port.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.Port.SelectedText = "";
+            this.Port.SelectionLength = 0;
+            this.Port.SelectionStart = 0;
+            this.Port.ShortcutsEnabled = true;
+            this.Port.Size = new System.Drawing.Size(86, 23);
+            this.Port.Style = MetroFramework.MetroColorStyle.Purple;
+            this.Port.TabIndex = 7;
+            this.Port.Text = "22";
+            this.Port.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.Port.UseSelectable = true;
+            this.Port.UseStyleColors = true;
+            this.Port.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.Port.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
-            this.advancedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.extractEntitlementsFromLocalFileToolStripMenuItem,
-            this.useCustomEntitlementsFileToolStripMenuItem,
-            this.useDefaultEntitlementsToolStripMenuItem,
-            this.dontSignApplicationsToolStripMenuItem,
-            this.verboseModeToolStripMenuItem});
-            this.advancedToolStripMenuItem.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
-            this.advancedToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
-            this.advancedToolStripMenuItem.Text = "Advanced";
+            // Password
             // 
-            // extractEntitlementsFromLocalFileToolStripMenuItem
             // 
-            this.extractEntitlementsFromLocalFileToolStripMenuItem.Name = "extractEntitlementsFromLocalFileToolStripMenuItem";
-            this.extractEntitlementsFromLocalFileToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
-            this.extractEntitlementsFromLocalFileToolStripMenuItem.Text = "Extract entitlements from local file";
-            this.extractEntitlementsFromLocalFileToolStripMenuItem.Click += new System.EventHandler(this.extractEntitlementsFromLocalFileToolStripMenuItem_Click);
             // 
-            // useCustomEntitlementsFileToolStripMenuItem
             // 
-            this.useCustomEntitlementsFileToolStripMenuItem.Name = "useCustomEntitlementsFileToolStripMenuItem";
-            this.useCustomEntitlementsFileToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
-            this.useCustomEntitlementsFileToolStripMenuItem.Text = "Use custom entitlements file";
-            this.useCustomEntitlementsFileToolStripMenuItem.Click += new System.EventHandler(this.useCustomEntitlementsFileToolStripMenuItem_Click);
+            this.Password.CustomButton.Image = null;
+            this.Password.CustomButton.Location = new System.Drawing.Point(64, 1);
+            this.Password.CustomButton.Name = "";
+            this.Password.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.Password.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.Password.CustomButton.TabIndex = 1;
+            this.Password.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.Password.CustomButton.UseSelectable = true;
+            this.Password.CustomButton.Visible = false;
+            this.Password.Lines = new string[0];
+            this.Password.Location = new System.Drawing.Point(112, 21);
+            this.Password.MaxLength = 15;
+            this.Password.Name = "Password";
+            this.Password.PasswordChar = '●';
+            this.Password.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.Password.SelectedText = "";
+            this.Password.SelectionLength = 0;
+            this.Password.SelectionStart = 0;
+            this.Password.ShortcutsEnabled = true;
+            this.Password.Size = new System.Drawing.Size(86, 23);
+            this.Password.Style = MetroFramework.MetroColorStyle.Purple;
+            this.Password.TabIndex = 6;
+            this.Password.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.Password.UseSelectable = true;
+            this.Password.UseStyleColors = true;
+            this.Password.UseSystemPasswordChar = true;
+            this.Password.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.Password.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
-            // useDefaultEntitlementsToolStripMenuItem
+            // IP
             // 
-            this.useDefaultEntitlementsToolStripMenuItem.Name = "useDefaultEntitlementsToolStripMenuItem";
-            this.useDefaultEntitlementsToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
-            this.useDefaultEntitlementsToolStripMenuItem.Text = "Use default entitlements";
-            this.useDefaultEntitlementsToolStripMenuItem.Click += new System.EventHandler(this.useDefaultEntitlementsToolStripMenuItem_Click);
             // 
-            // dontSignApplicationsToolStripMenuItem
             // 
-            this.dontSignApplicationsToolStripMenuItem.Name = "dontSignApplicationsToolStripMenuItem";
-            this.dontSignApplicationsToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
-            this.dontSignApplicationsToolStripMenuItem.Text = "Don\'t sign applications";
-            this.dontSignApplicationsToolStripMenuItem.Click += new System.EventHandler(this.dontSignApplicationsToolStripMenuItem_Click);
             // 
-            // verboseModeToolStripMenuItem
+            this.IP.CustomButton.Image = null;
+            this.IP.CustomButton.Location = new System.Drawing.Point(64, 1);
+            this.IP.CustomButton.Name = "";
+            this.IP.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.IP.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.IP.CustomButton.TabIndex = 1;
+            this.IP.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.IP.CustomButton.UseSelectable = true;
+            this.IP.CustomButton.Visible = false;
+            this.IP.Lines = new string[] {
+        "192.168.1.1"};
+            this.IP.Location = new System.Drawing.Point(112, 0);
+            this.IP.MaxLength = 15;
+            this.IP.Name = "IP";
+            this.IP.PasswordChar = '\0';
+            this.IP.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.IP.SelectedText = "";
+            this.IP.SelectionLength = 0;
+            this.IP.SelectionStart = 0;
+            this.IP.ShortcutsEnabled = true;
+            this.IP.Size = new System.Drawing.Size(86, 23);
+            this.IP.Style = MetroFramework.MetroColorStyle.Purple;
+            this.IP.TabIndex = 5;
+            this.IP.Text = "192.168.1.1";
+            this.IP.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.IP.UseSelectable = true;
+            this.IP.UseStyleColors = true;
+            this.IP.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.IP.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
-            this.verboseModeToolStripMenuItem.Name = "verboseModeToolStripMenuItem";
-            this.verboseModeToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
-            this.verboseModeToolStripMenuItem.Text = "Verbose mode";
-            this.verboseModeToolStripMenuItem.Click += new System.EventHandler(this.verboseModeToolStripMenuItem_Click);
+            // metroLabel3
             // 
-            // Main
+            this.metroLabel3.AutoSize = true;
+            this.metroLabel3.Location = new System.Drawing.Point(68, 44);
+            this.metroLabel3.Name = "metroLabel3";
+            this.metroLabel3.Size = new System.Drawing.Size(37, 20);
+            this.metroLabel3.Style = MetroFramework.MetroColorStyle.Purple;
+            this.metroLabel3.TabIndex = 4;
+            this.metroLabel3.Text = "Port:";
+            this.metroLabel3.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroLabel3.UseStyleColors = true;
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(794, 516);
-            this.Controls.Add(this.output);
-            this.Controls.Add(this.terminal);
-            this.Controls.Add(this.portlbl);
-            this.Controls.Add(this.port);
-            this.Controls.Add(this.paypal);
-            this.Controls.Add(this.autolabel);
-            this.Controls.Add(this.github);
-            this.Controls.Add(this.debslnk);
-            this.Controls.Add(this.ui);
-            this.Controls.Add(this.creator);
-            this.Controls.Add(this.reddit);
-            this.Controls.Add(this.twitter);
-            this.Controls.Add(this.version);
-            this.Controls.Add(this.error);
-            this.Controls.Add(this.auto);
-            this.Controls.Add(this.uicachebtn);
-            this.Controls.Add(this.respringbtn);
-            this.Controls.Add(this.select);
-            this.Controls.Add(this.passwordlabel);
-            this.Controls.Add(this.iplabel);
-            this.Controls.Add(this.pass);
-            this.Controls.Add(this.host);
-            this.Controls.Add(this.uninstallbtn);
-            this.Controls.Add(this.installbtn);
-            this.Controls.Add(this.menuStrip1);
-            this.DoubleBuffered = true;
-            this.MaximizeBox = false;
-            this.Name = "Main";
-            this.ShowIcon = false;
+            // metroLabel2
+            // 
+            this.metroLabel2.AutoSize = true;
+            this.metroLabel2.Location = new System.Drawing.Point(4, 24);
+            this.metroLabel2.Name = "metroLabel2";
+            this.metroLabel2.Size = new System.Drawing.Size(101, 20);
+            this.metroLabel2.Style = MetroFramework.MetroColorStyle.Purple;
+            this.metroLabel2.TabIndex = 3;
+            this.metroLabel2.Text = "Root Password:";
+            this.metroLabel2.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroLabel2.UseStyleColors = true;
+            // 
+            // metroLabel1
+            // 
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.Location = new System.Drawing.Point(35, 4);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(70, 20);
+            this.metroLabel1.Style = MetroFramework.MetroColorStyle.Purple;
+            this.metroLabel1.TabIndex = 2;
+            this.metroLabel1.Text = "Device IP:";
+            this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroLabel1.UseStyleColors = true;
+            // 
+            // metroTabPage2
+            // 
+            this.metroTabPage2.Controls.Add(this.DontSign);
+            this.metroTabPage2.Controls.Add(this.openterminal);
+            this.metroTabPage2.Controls.Add(this.verbosemode);
+            this.metroTabPage2.Controls.Add(this.defaultentitlements);
+            this.metroTabPage2.Controls.Add(this.customentitlements);
+            this.metroTabPage2.Controls.Add(this.Entitlementsfromlocal);
+            this.metroTabPage2.HorizontalScrollbarBarColor = true;
+            this.metroTabPage2.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroTabPage2.HorizontalScrollbarSize = 10;
+            this.metroTabPage2.Location = new System.Drawing.Point(4, 38);
+            this.metroTabPage2.Name = "metroTabPage2";
+            this.metroTabPage2.Size = new System.Drawing.Size(696, 372);
+            this.metroTabPage2.Style = MetroFramework.MetroColorStyle.Purple;
+            this.metroTabPage2.TabIndex = 1;
+            this.metroTabPage2.Text = "Advanced";
+            this.metroTabPage2.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroTabPage2.UseStyleColors = true;
+            this.metroTabPage2.VerticalScrollbarBarColor = true;
+            this.metroTabPage2.VerticalScrollbarHighlightOnWheel = false;
+            this.metroTabPage2.VerticalScrollbarSize = 10;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // metroTabPage3
+            // 
+            this.metroTabPage3.Controls.Add(this.metroButton8);
+            this.metroTabPage3.Controls.Add(this.groupBox3);
+            this.metroTabPage3.Controls.Add(this.groupBox2);
+            this.metroTabPage3.Controls.Add(this.groupBox1);
+            this.metroTabPage3.Controls.Add(this.metroButton1);
+            this.metroTabPage3.HorizontalScrollbarBarColor = true;
+            this.metroTabPage3.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroTabPage3.HorizontalScrollbarSize = 10;
+            this.metroTabPage3.Location = new System.Drawing.Point(4, 38);
+            this.metroTabPage3.Name = "metroTabPage3";
+            this.metroTabPage3.Size = new System.Drawing.Size(696, 372);
+            this.metroTabPage3.Style = MetroFramework.MetroColorStyle.Purple;
+            this.metroTabPage3.TabIndex = 2;
+            this.metroTabPage3.Text = "Credits/Help";
+            this.metroTabPage3.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroTabPage3.UseStyleColors = true;
+            this.metroTabPage3.VerticalScrollbarBarColor = true;
+            this.metroTabPage3.VerticalScrollbarHighlightOnWheel = false;
+            this.metroTabPage3.VerticalScrollbarSize = 10;
+            // 
+            // Entitlementsfromlocal
+            // 
+            this.Entitlementsfromlocal.Location = new System.Drawing.Point(3, 3);
+            this.Entitlementsfromlocal.Name = "Entitlementsfromlocal";
+            this.Entitlementsfromlocal.Size = new System.Drawing.Size(219, 23);
+            this.Entitlementsfromlocal.Style = MetroFramework.MetroColorStyle.Purple;
+            this.Entitlementsfromlocal.TabIndex = 9;
+            this.Entitlementsfromlocal.Text = "Extract Entitlements from local file";
+            this.Entitlementsfromlocal.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.Entitlementsfromlocal.UseSelectable = true;
+            this.Entitlementsfromlocal.UseStyleColors = true;
+            this.Entitlementsfromlocal.Click += new System.EventHandler(this.metroButton1_Click);
+            // 
+            // customentitlements
+            // 
+            this.customentitlements.Location = new System.Drawing.Point(3, 32);
+            this.customentitlements.Name = "customentitlements";
+            this.customentitlements.Size = new System.Drawing.Size(219, 23);
+            this.customentitlements.Style = MetroFramework.MetroColorStyle.Purple;
+            this.customentitlements.TabIndex = 10;
+            this.customentitlements.Text = "Use Custom entitlements file";
+            this.customentitlements.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.customentitlements.UseSelectable = true;
+            this.customentitlements.UseStyleColors = true;
+            this.customentitlements.Click += new System.EventHandler(this.customentitlements_Click);
+            // 
+            // defaultentitlements
+            // 
+            this.defaultentitlements.Location = new System.Drawing.Point(3, 61);
+            this.defaultentitlements.Name = "defaultentitlements";
+            this.defaultentitlements.Size = new System.Drawing.Size(219, 23);
+            this.defaultentitlements.Style = MetroFramework.MetroColorStyle.Purple;
+            this.defaultentitlements.TabIndex = 11;
+            this.defaultentitlements.Text = "Use default entitlements";
+            this.defaultentitlements.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.defaultentitlements.UseSelectable = true;
+            this.defaultentitlements.UseStyleColors = true;
+            this.defaultentitlements.Click += new System.EventHandler(this.defaultentitlements_Click);
+            // 
+            // verbosemode
+            // 
+            this.verbosemode.Location = new System.Drawing.Point(3, 119);
+            this.verbosemode.Name = "verbosemode";
+            this.verbosemode.Size = new System.Drawing.Size(219, 23);
+            this.verbosemode.Style = MetroFramework.MetroColorStyle.Purple;
+            this.verbosemode.TabIndex = 12;
+            this.verbosemode.Text = "Verbose mode";
+            this.verbosemode.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.verbosemode.UseSelectable = true;
+            this.verbosemode.UseStyleColors = true;
+            this.verbosemode.Click += new System.EventHandler(this.verbosemode_Click);
+            // 
+            // openterminal
+            // 
+            this.openterminal.Location = new System.Drawing.Point(3, 148);
+            this.openterminal.Name = "openterminal";
+            this.openterminal.Size = new System.Drawing.Size(219, 23);
+            this.openterminal.Style = MetroFramework.MetroColorStyle.Purple;
+            this.openterminal.TabIndex = 13;
+            this.openterminal.Text = "Open Terminal";
+            this.openterminal.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.openterminal.UseSelectable = true;
+            this.openterminal.UseStyleColors = true;
+            this.openterminal.Click += new System.EventHandler(this.openterminal_Click);
+            // 
+            // DontSign
+            // 
+            this.DontSign.Location = new System.Drawing.Point(3, 90);
+            this.DontSign.Name = "DontSign";
+            this.DontSign.Size = new System.Drawing.Size(219, 23);
+            this.DontSign.Style = MetroFramework.MetroColorStyle.Purple;
+            this.DontSign.TabIndex = 14;
+            this.DontSign.Text = "Don\'t Sign Applications";
+            this.DontSign.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.DontSign.UseSelectable = true;
+            this.DontSign.UseStyleColors = true;
+            this.DontSign.Click += new System.EventHandler(this.DontSign_Click);
+            // 
+            // metroButton1
+            // 
+            this.metroButton1.FontSize = MetroFramework.MetroButtonSize.Medium;
+            this.metroButton1.Location = new System.Drawing.Point(3, 3);
+            this.metroButton1.Name = "metroButton1";
+            this.metroButton1.Size = new System.Drawing.Size(224, 52);
+            this.metroButton1.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroButton1.TabIndex = 9;
+            this.metroButton1.Text = "Report an Issue, Bug or get help";
+            this.metroButton1.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroButton1.UseSelectable = true;
+            this.metroButton1.UseStyleColors = true;
+            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click_1);
+            // 
+            // metroButton2
+            // 
+            this.metroButton2.Location = new System.Drawing.Point(6, 21);
+            this.metroButton2.Name = "metroButton2";
+            this.metroButton2.Size = new System.Drawing.Size(188, 23);
+            this.metroButton2.Style = MetroFramework.MetroColorStyle.Purple;
+            this.metroButton2.TabIndex = 10;
+            this.metroButton2.Text = "Twitter";
+            this.metroButton2.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroButton2.UseSelectable = true;
+            this.metroButton2.UseStyleColors = true;
+            this.metroButton2.Click += new System.EventHandler(this.metroButton2_Click);
+            // 
+            // metroButton3
+            // 
+            this.metroButton3.Location = new System.Drawing.Point(6, 50);
+            this.metroButton3.Name = "metroButton3";
+            this.metroButton3.Size = new System.Drawing.Size(188, 23);
+            this.metroButton3.Style = MetroFramework.MetroColorStyle.Purple;
+            this.metroButton3.TabIndex = 11;
+            this.metroButton3.Text = "Reddit";
+            this.metroButton3.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroButton3.UseSelectable = true;
+            this.metroButton3.UseStyleColors = true;
+            this.metroButton3.Click += new System.EventHandler(this.metroButton3_Click);
+            // 
+            // metroButton4
+            // 
+            this.metroButton4.Location = new System.Drawing.Point(6, 79);
+            this.metroButton4.Name = "metroButton4";
+            this.metroButton4.Size = new System.Drawing.Size(188, 23);
+            this.metroButton4.Style = MetroFramework.MetroColorStyle.Purple;
+            this.metroButton4.TabIndex = 12;
+            this.metroButton4.Text = "Github";
+            this.metroButton4.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroButton4.UseSelectable = true;
+            this.metroButton4.UseStyleColors = true;
+            this.metroButton4.Click += new System.EventHandler(this.metroButton4_Click);
+            // 
+            // metroButton5
+            // 
+            this.metroButton5.Location = new System.Drawing.Point(6, 108);
+            this.metroButton5.Name = "metroButton5";
+            this.metroButton5.Size = new System.Drawing.Size(188, 23);
+            this.metroButton5.Style = MetroFramework.MetroColorStyle.Purple;
+            this.metroButton5.TabIndex = 13;
+            this.metroButton5.Text = "Paypal";
+            this.metroButton5.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroButton5.UseSelectable = true;
+            this.metroButton5.UseStyleColors = true;
+            this.metroButton5.Click += new System.EventHandler(this.metroButton5_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.metroButton2);
+            this.groupBox1.Controls.Add(this.metroButton5);
+            this.groupBox1.Controls.Add(this.metroButton3);
+            this.groupBox1.Controls.Add(this.metroButton4);
+            this.groupBox1.ForeColor = System.Drawing.Color.DarkMagenta;
+            this.groupBox1.Location = new System.Drawing.Point(493, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 140);
+            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Developer: Joseph Walden";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox2.Controls.Add(this.metroButton7);
+            this.groupBox2.Controls.Add(this.metroButton6);
+            this.groupBox2.Controls.Add(this.metroButton9);
+            this.groupBox2.ForeColor = System.Drawing.Color.DarkMagenta;
+            this.groupBox2.Location = new System.Drawing.Point(493, 149);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(200, 110);
+            this.groupBox2.TabIndex = 15;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "New UI: PassiveModding";
+            // 
+            // metroButton6
+            // 
+            this.metroButton6.Location = new System.Drawing.Point(6, 21);
+            this.metroButton6.Name = "metroButton6";
+            this.metroButton6.Size = new System.Drawing.Size(188, 23);
+            this.metroButton6.Style = MetroFramework.MetroColorStyle.Purple;
+            this.metroButton6.TabIndex = 10;
+            this.metroButton6.Text = "Twitter";
+            this.metroButton6.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroButton6.UseSelectable = true;
+            this.metroButton6.UseStyleColors = true;
+            this.metroButton6.Click += new System.EventHandler(this.metroButton6_Click);
+            // 
+            // metroButton9
+            // 
+            this.metroButton9.Location = new System.Drawing.Point(6, 50);
+            this.metroButton9.Name = "metroButton9";
+            this.metroButton9.Size = new System.Drawing.Size(188, 23);
+            this.metroButton9.Style = MetroFramework.MetroColorStyle.Purple;
+            this.metroButton9.TabIndex = 12;
+            this.metroButton9.Text = "Github";
+            this.metroButton9.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroButton9.UseSelectable = true;
+            this.metroButton9.UseStyleColors = true;
+            this.metroButton9.Click += new System.EventHandler(this.metroButton9_Click);
+            // 
+            // metroButton7
+            // 
+            this.metroButton7.Location = new System.Drawing.Point(6, 79);
+            this.metroButton7.Name = "metroButton7";
+            this.metroButton7.Size = new System.Drawing.Size(188, 23);
+            this.metroButton7.Style = MetroFramework.MetroColorStyle.Purple;
+            this.metroButton7.TabIndex = 13;
+            this.metroButton7.Text = "Discord";
+            this.metroButton7.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroButton7.UseSelectable = true;
+            this.metroButton7.UseStyleColors = true;
+            this.metroButton7.Click += new System.EventHandler(this.metroButton7_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox3.Controls.Add(this.metroButton10);
+            this.groupBox3.Controls.Add(this.metroButton11);
+            this.groupBox3.ForeColor = System.Drawing.Color.DarkMagenta;
+            this.groupBox3.Location = new System.Drawing.Point(493, 266);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(200, 84);
+            this.groupBox3.TabIndex = 16;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "r/jailbreak";
+            // 
+            // metroButton10
+            // 
+            this.metroButton10.Location = new System.Drawing.Point(6, 21);
+            this.metroButton10.Name = "metroButton10";
+            this.metroButton10.Size = new System.Drawing.Size(188, 23);
+            this.metroButton10.Style = MetroFramework.MetroColorStyle.Purple;
+            this.metroButton10.TabIndex = 10;
+            this.metroButton10.Text = "Reddit";
+            this.metroButton10.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroButton10.UseSelectable = true;
+            this.metroButton10.UseStyleColors = true;
+            this.metroButton10.Click += new System.EventHandler(this.metroButton10_Click);
+            // 
+            // metroButton11
+            // 
+            this.metroButton11.Location = new System.Drawing.Point(6, 50);
+            this.metroButton11.Name = "metroButton11";
+            this.metroButton11.Size = new System.Drawing.Size(188, 23);
+            this.metroButton11.Style = MetroFramework.MetroColorStyle.Purple;
+            this.metroButton11.TabIndex = 12;
+            this.metroButton11.Text = "Discord";
+            this.metroButton11.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroButton11.UseSelectable = true;
+            this.metroButton11.UseStyleColors = true;
+            this.metroButton11.Click += new System.EventHandler(this.metroButton11_Click);
+            // 
+            // metroButton8
+            // 
+            this.metroButton8.FontSize = MetroFramework.MetroButtonSize.Medium;
+            this.metroButton8.Location = new System.Drawing.Point(3, 61);
+            this.metroButton8.Name = "metroButton8";
+            this.metroButton8.Size = new System.Drawing.Size(224, 52);
+            this.metroButton8.Style = MetroFramework.MetroColorStyle.Teal;
+            this.metroButton8.TabIndex = 17;
+            this.metroButton8.Text = " 𐦬 Electra 𐦬";
+            this.metroButton8.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroButton8.UseSelectable = true;
+            this.metroButton8.UseStyleColors = true;
+            this.metroButton8.Click += new System.EventHandler(this.metroButton8_Click_1);
+            // 
+            // Form1
+            // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(750, 500);
+            this.Controls.Add(this.metroTabControl1);
+            this.Name = "Form1";
+            this.Style = MetroFramework.MetroColorStyle.Purple;
             this.Text = "Tweak Installer";
-            this.Load += new System.EventHandler(this.Main_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.metroTabControl1.ResumeLayout(false);
+            this.metroTabPage1.ResumeLayout(false);
+            this.metroTabPage1.PerformLayout();
+            this.metroTabPage2.ResumeLayout(false);
+            this.metroTabPage3.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button installbtn;
-        private System.Windows.Forms.Button uninstallbtn;
-        private System.Windows.Forms.TextBox host;
-        private System.Windows.Forms.TextBox pass;
-        private System.Windows.Forms.Label iplabel;
-        private System.Windows.Forms.Label passwordlabel;
-        private System.Windows.Forms.Button select;
-        private System.Windows.Forms.OpenFileDialog openFileDialog;
-        private System.Windows.Forms.Button respringbtn;
-        private System.Windows.Forms.Button uicachebtn;
-        private System.Windows.Forms.CheckBox auto;
-        private System.Windows.Forms.LinkLabel error;
-        private System.Windows.Forms.Label version;
-        private System.Windows.Forms.LinkLabel twitter;
-        private System.Windows.Forms.LinkLabel reddit;
-        private System.Windows.Forms.LinkLabel creator;
-        private System.Windows.Forms.LinkLabel ui;
-        private System.Windows.Forms.Button debslnk;
-        private System.Windows.Forms.LinkLabel github;
-        private System.Windows.Forms.Label autolabel;
-        private System.Windows.Forms.LinkLabel paypal;
-        private System.Windows.Forms.Label portlbl;
-        private System.Windows.Forms.TextBox port;
-        private System.Windows.Forms.Button terminal;
-        private System.Windows.Forms.TextBox output;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem advancedToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem selectDebsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem extractEntitlementsFromLocalFileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem verboseModeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dontSignApplicationsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem useCustomEntitlementsFileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem useDefaultEntitlementsToolStripMenuItem;
+        private MetroFramework.Controls.MetroTabControl metroTabControl1;
+        private MetroFramework.Controls.MetroTabPage metroTabPage1;
+        private MetroFramework.Controls.MetroTextBox Password;
+        private MetroFramework.Controls.MetroTextBox IP;
+        private MetroFramework.Controls.MetroLabel metroLabel3;
+        private MetroFramework.Controls.MetroLabel metroLabel2;
+        private MetroFramework.Controls.MetroLabel metroLabel1;
+        private MetroFramework.Controls.MetroTextBox Port;
+        private MetroFramework.Controls.MetroButton Select;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private MetroFramework.Controls.MetroCheckBox auto;
+        private MetroFramework.Controls.MetroButton Respring;
+        private MetroFramework.Controls.MetroButton Uninstall;
+        private MetroFramework.Controls.MetroButton Install;
+        private MetroFramework.Controls.MetroLabel metroLabel5;
+        private MetroFramework.Controls.MetroLabel metroLabel4;
+        private MetroFramework.Controls.MetroTextBox TweakList;
+        private MetroFramework.Controls.MetroTextBox output;
+        private MetroFramework.Controls.MetroTabPage metroTabPage2;
+        private MetroFramework.Controls.MetroButton UiCache;
+        private MetroFramework.Controls.MetroButton openterminal;
+        private MetroFramework.Controls.MetroButton verbosemode;
+        private MetroFramework.Controls.MetroButton defaultentitlements;
+        private MetroFramework.Controls.MetroButton customentitlements;
+        private MetroFramework.Controls.MetroButton Entitlementsfromlocal;
+        private MetroFramework.Controls.MetroTabPage metroTabPage3;
+        private MetroFramework.Controls.MetroButton DontSign;
+        private MetroFramework.Controls.MetroButton metroButton1;
+        private MetroFramework.Controls.MetroButton metroButton2;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private MetroFramework.Controls.MetroButton metroButton6;
+        private MetroFramework.Controls.MetroButton metroButton9;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private MetroFramework.Controls.MetroButton metroButton5;
+        private MetroFramework.Controls.MetroButton metroButton3;
+        private MetroFramework.Controls.MetroButton metroButton4;
+        private MetroFramework.Controls.MetroButton metroButton7;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private MetroFramework.Controls.MetroButton metroButton10;
+        private MetroFramework.Controls.MetroButton metroButton11;
+        private MetroFramework.Controls.MetroButton metroButton8;
     }
 }
 
