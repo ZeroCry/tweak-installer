@@ -58,3 +58,9 @@ D:\Documents\GitHub\tweak-installer\obj\Debug\Tweak_Installer.Properties.Resourc
 D:\Documents\GitHub\tweak-installer\obj\Debug\Tweak_Installer.YNAD.resources
 D:\Documents\GitHub\tweak-installer\obj\Debug\Tweak Installer.csproj.GenerateResource.Cache
 D:\Documents\GitHub\tweak-installer\obj\Debug\Tweak Installer.csproj.CoreCompileInputs.cache
+D:\Documents\GitHub\tweak-installer\bin\Debug\Newtonsoft.Json.dll
+D:\Documents\GitHub\tweak-installer\bin\Debug\Newtonsoft.Json.xml
+D:\Documents\GitHub\tweak-installer\bin\Debug\MoreLinq.dll
+D:\Documents\GitHub\tweak-installer\bin\Debug\System.ValueTuple.dll
+D:\Documents\GitHub\tweak-installer\bin\Debug\MoreLinq.xml
+D:\Documents\GitHub\tweak-installer\bin\Debug\System.ValueTuple.xml

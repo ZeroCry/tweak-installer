@@ -1,3 +1,11 @@
+bin/Debug/backup/
+bin/Debug/files/
+bin/Debug/temp/
+bin/Debug/settings
+bin/Debug/tweakstatus
+bin/Debug/log.txt
+bin/Debug/script.sh
+bin/Debug/skip.list
 
 *.ide-shm
 *.ide-wal

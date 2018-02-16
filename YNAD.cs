@@ -17,6 +17,7 @@ namespace Tweak_Installer
         public YNAD(string question)
         {
             InitializeComponent();
+            Question.Text = question;
         }
 
         private void YNAD_Load(object sender, EventArgs e)

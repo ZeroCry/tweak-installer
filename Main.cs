@@ -10,6 +10,8 @@ using jLib;
 using MetroFramework;
 using MetroFramework.Forms;
 using Microsoft.VisualBasic.FileIO;
+using MoreLinq;
+using Newtonsoft.Json;
 using SevenZipExtractor;
 using WinSCP;
 using SearchOption = System.IO.SearchOption;
@@ -31,12 +33,40 @@ namespace Tweak_Installer
         public Crawler crawler;
         public bool uicache, jtool, convert, dont_sign;
         public bool update;
+        public List<tweak> TweakStatusList = new List<tweak>();
+
+        public class tweak
+        {
+            public string file { get; set; } = "Unknown";
+            public string status { get; set; } = "Uninstalled";
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             metroTabControl1.SelectedIndex = 0;
             Text = $"Tweak Installer v{version}";
             if (Environment.GetCommandLineArgs().Contains("dont-update")) update = false;
+
+
+            if (File.Exists(Path.Combine(AppContext.BaseDirectory, "tweakstatus")))
+            {
+                var file = Path.Combine(AppContext.BaseDirectory, "tweakstatus");
+                TweakStatusList = JsonConvert.DeserializeObject<List<tweak>>(File.ReadAllText(file));
+
+                foreach (var tweak in TweakStatusList)
+                {
+                    if (TweakStatusList.Any(x => x.file.ToLower() == file.ToLower()))
+                    {
+                        TweakStatusList.Remove(TweakStatusList.FirstOrDefault(x => x.file.ToLower() == file.ToLower()));
+                    }
+                    else
+                    {
+                        ListViewItem item = new ListViewItem(tweak.file);
+                        item.SubItems.Add(tweak.status);
+                        metroListView1.Items.Add(item);                        
+                    }
+                }
+            }
 
             deleteIfExists("tic.exe");
 
@@ -53,24 +83,56 @@ namespace Tweak_Installer
             Uninstall.ContextMenu = uninstallmenu;
             if (!File.Exists("settings"))
             {
-                string[] def = { "192.168.1.1", "22", "" };
+                string[] def = { "192.168.1.1", "22", "", "false", "true" };
                 File.WriteAllLines("settings", def);
             }
-            string[] data = File.ReadAllLines("settings"); //get ssh settings
-            for (int i = 0; i != data.Length; i++)
+
+            try
             {
-                data[i] = data[i].Split('#')[0];
+                string[] data = File.ReadAllLines("settings"); //get ssh settings
+                for (int i = 0; i != data.Length; i++)
+                {
+                    data[i] = data[i].Split('#')[0];
+                }
+                IP.Text = data[0];
+                Port.Text = data[1];
+                Password.Text = data[2];
+                metroCheckBox1.Checked = Convert.ToBoolean(data[3]);
+                auto.Checked = Convert.ToBoolean(data[4]);
+                if (Port.Text == "" || Port.Text == "root")
+                {
+                    Port.Text = "22";
+                }
             }
-            IP.Text = data[0];
-            Port.Text = data[1];
-            Password.Text = data[2];
-            if (Port.Text == "" || Port.Text == "root")
+            catch
             {
-                Port.Text = "22";
+                //
             }
+
         }
 
         #region Funcs
+
+        public void SaveInfo()
+        {
+            string[] def = { IP.Text, Port.Text, Password.Text, metroCheckBox1.Checked.ToString(), auto.Checked.ToString() };
+            File.WriteAllLines("settings", def);
+        }
+        public void UpdateListBox()
+        {
+            SerializeList();
+            metroListView1.Items.Clear();
+            var uniqueItems = TweakStatusList.DistinctBy(i => i.file).ToList();
+            foreach (var Twk in uniqueItems)
+            {
+                var item = new ListViewItem(Twk.file);
+                item.SubItems.Add(Twk.status);
+                metroListView1.Items.Add(item);
+            }
+            TweakStatusList = uniqueItems;
+            SerializeList();
+        }
+
         private void RemoveFilza(object sender, EventArgs e)
         {
             MessageBox.Show("This could take up to a minute");
@@ -629,6 +691,10 @@ namespace Tweak_Installer
 
         private void Respring_Click(object sender, EventArgs e)
         {
+            if (metroCheckBox1.Checked)
+            {
+                SaveInfo();
+            }
             session = getSession(IP.Text, "root", Password.Text, int.Parse(Port.Text));
             log("Respringing");
             session.ExecuteCommand("killall -9 SpringBoard");
@@ -638,6 +704,10 @@ namespace Tweak_Installer
 
         private void UiCache_Click(object sender, EventArgs e)
         {
+            if (metroCheckBox1.Checked)
+            {
+                SaveInfo();
+            }
             session = getSession(IP.Text, "root", Password.Text, int.Parse(Port.Text));
             log("Running uicache");
             session.ExecuteCommand("uicache");
@@ -794,6 +864,21 @@ namespace Tweak_Installer
             Directory.CreateDirectory(path);
             if (verbose1) log("Created directory " + path);
         }
+
+        private void metroListView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void metroButton12_Click(object sender, EventArgs e)
+        {
+            UpdateListBox();
+        }
+
+        private void metroCheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+        }
+
         public void uninstallFiles(Session session1)
         {
             log("Preparing to uninstall");
@@ -878,6 +963,10 @@ namespace Tweak_Installer
         #endregion
         private void Install_Click(object sender, EventArgs e)
         {
+            if (metroCheckBox1.Checked)
+            {
+                SaveInfo();
+            }
             EmptyDir("files");
             if (!enabled)
             {
@@ -903,11 +992,17 @@ namespace Tweak_Installer
                 {
                     extractZip(tweak);
                 }
+                if (TweakStatusList.Any(x => tweak.ToLower().Contains(x.file.ToLower())))
+                {
+                    var first = TweakStatusList.FirstOrDefault(x => tweak.ToLower().Contains(x.file.ToLower()));
+                    first.status = "Installed";
+                }
             }
             if (convert) convertTweaks();
             getFiles();
             installFiles(session);
             log("");
+            UpdateListBox();
         }
 
         private void Select_Click(object sender, EventArgs e)
@@ -916,6 +1011,7 @@ namespace Tweak_Installer
             openFileDialog1.Filter = "Tweaks|*.deb;*.zip;*.ipa";
             tweaks.Clear();
             TweakList.Text = "";
+            filenamesshort.Clear();
             var f = openFileDialog1.ShowDialog();
             switch (f)
             {
@@ -929,6 +1025,18 @@ namespace Tweak_Installer
                     foreach (string i in openFileDialog1.SafeFileNames)
                     {
                         filenamesshort.Add(i);
+
+
+                        var item = new ListViewItem(i);
+                        item.SubItems.Add("N/A");
+                        metroListView1.Items.Add(item);
+                        var tweak = new tweak
+                        {
+                            file = i,
+                            status = "N/A"
+                        };
+                        TweakStatusList.Add(tweak);
+                        TweakList.Lines = filenamesshort.ToArray();
                     }
                     break;
                 }
@@ -936,11 +1044,21 @@ namespace Tweak_Installer
                     enabled = false;
                     break;
             }
-
-            TweakList.Lines = filenamesshort.ToArray();
+            SerializeList();
         }
+
+        public void SerializeList()
+        {
+            var txt = JsonConvert.SerializeObject(TweakStatusList);
+            File.WriteAllText(Path.Combine(AppContext.BaseDirectory, "tweakstatus"), txt);
+        }
+
         private void Uninstall_Click(object sender, EventArgs e)
         {
+            if (metroCheckBox1.Checked)
+            {
+                SaveInfo();
+            }
             emptyDir("files");
             if (!enabled)
             {
@@ -966,6 +1084,11 @@ namespace Tweak_Installer
                 {
                     extractZip(tweak);
                 }
+                if (TweakStatusList.Any(x => tweak.ToLower().Contains(x.file.ToLower())))
+                {
+                    var first = TweakStatusList.FirstOrDefault(x => tweak.ToLower().Contains(x.file.ToLower()));
+                    first.status = "Uninstalled";
+                }
             }
             if (convert) convertTweaks();
             if (File.Exists("prerm"))
@@ -977,6 +1100,7 @@ namespace Tweak_Installer
             getFiles();
             uninstallFiles(session);
             log("");
+            UpdateListBox();
         }
     }
 }

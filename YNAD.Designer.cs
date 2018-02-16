@@ -28,46 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.TweakList = new MetroFramework.Controls.MetroTextBox();
+            this.Question = new MetroFramework.Controls.MetroTextBox();
             this.Select = new MetroFramework.Controls.MetroButton();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.metroButton2 = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
             // 
-            // TweakList
+            // Question
             // 
             // 
             // 
             // 
-            this.TweakList.CustomButton.Image = null;
-            this.TweakList.CustomButton.Location = new System.Drawing.Point(596, 2);
-            this.TweakList.CustomButton.Name = "";
-            this.TweakList.CustomButton.Size = new System.Drawing.Size(105, 105);
-            this.TweakList.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.TweakList.CustomButton.TabIndex = 1;
-            this.TweakList.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.TweakList.CustomButton.UseSelectable = true;
-            this.TweakList.CustomButton.Visible = false;
-            this.TweakList.Lines = new string[0];
-            this.TweakList.Location = new System.Drawing.Point(23, 63);
-            this.TweakList.MaxLength = 32767;
-            this.TweakList.Multiline = true;
-            this.TweakList.Name = "TweakList";
-            this.TweakList.PasswordChar = '\0';
-            this.TweakList.ReadOnly = true;
-            this.TweakList.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TweakList.SelectedText = "";
-            this.TweakList.SelectionLength = 0;
-            this.TweakList.SelectionStart = 0;
-            this.TweakList.ShortcutsEnabled = true;
-            this.TweakList.Size = new System.Drawing.Size(704, 110);
-            this.TweakList.Style = MetroFramework.MetroColorStyle.Purple;
-            this.TweakList.TabIndex = 11;
-            this.TweakList.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.TweakList.UseSelectable = true;
-            this.TweakList.UseStyleColors = true;
-            this.TweakList.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.TweakList.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.Question.CustomButton.Image = null;
+            this.Question.CustomButton.Location = new System.Drawing.Point(596, 2);
+            this.Question.CustomButton.Name = "";
+            this.Question.CustomButton.Size = new System.Drawing.Size(105, 105);
+            this.Question.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.Question.CustomButton.TabIndex = 1;
+            this.Question.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.Question.CustomButton.UseSelectable = true;
+            this.Question.CustomButton.Visible = false;
+            this.Question.Lines = new string[0];
+            this.Question.Location = new System.Drawing.Point(23, 63);
+            this.Question.MaxLength = 32767;
+            this.Question.Multiline = true;
+            this.Question.Name = "Question";
+            this.Question.PasswordChar = '\0';
+            this.Question.ReadOnly = true;
+            this.Question.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.Question.SelectedText = "";
+            this.Question.SelectionLength = 0;
+            this.Question.SelectionStart = 0;
+            this.Question.ShortcutsEnabled = true;
+            this.Question.Size = new System.Drawing.Size(704, 110);
+            this.Question.Style = MetroFramework.MetroColorStyle.Purple;
+            this.Question.TabIndex = 11;
+            this.Question.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.Question.UseSelectable = true;
+            this.Question.UseStyleColors = true;
+            this.Question.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.Question.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // Select
             // 
@@ -116,7 +116,7 @@
             this.Controls.Add(this.metroButton2);
             this.Controls.Add(this.metroButton1);
             this.Controls.Add(this.Select);
-            this.Controls.Add(this.TweakList);
+            this.Controls.Add(this.Question);
             this.Name = "YNAD";
             this.Style = MetroFramework.MetroColorStyle.Purple;
             this.Text = "YNAD";
@@ -128,7 +128,7 @@
 
         #endregion
 
-        private MetroFramework.Controls.MetroTextBox TweakList;
+        private MetroFramework.Controls.MetroTextBox Question;
         private MetroFramework.Controls.MetroButton Select;
         private MetroFramework.Controls.MetroButton metroButton1;
         private MetroFramework.Controls.MetroButton metroButton2;

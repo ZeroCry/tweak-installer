@@ -117,6 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="metroLabel6.Text" xml:space="preserve">
+    <value>Device IP?
+Go to Settings -&gt; Wi-Fi -&gt; Your Home Network (i) -&gt; IP Address
+
+Password?
+Default password is always alpine, however it is recommended to open 
+terminal and change this to another password using the following command
+"passwd" you will be prompted to type a new password after this. 
+*NOTE: You will not see the new password as you type it
+
+Port?
+This is 22, although port 2222 can also be used as it is open with Electra</value>
+  </data>
   <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
